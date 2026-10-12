@@ -228,6 +228,38 @@ main>.section{scroll-margin-top:80px}
  .portal-transition .portal-rings{filter:none}
  .portal-transition .portal-veil{background:radial-gradient(circle,transparent 0%,#02071088 100%)}
 }
+</style><style id="eclats-portal-v3-style">
+/* GPU tunnel + transform-only 3D brass astrolabe; old cinematic layers disabled. */
+.portal-transition.portal-v3{position:fixed;inset:0;z-index:99999;overflow:hidden;display:block;visibility:hidden;opacity:0;background:#061522;transition:none;pointer-events:none;perspective:900px}
+.portal-transition.portal-v3.is-active{visibility:visible;opacity:1;pointer-events:auto}
+.portal-v3 .portal-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:1;object-fit:cover}
+.portal-v3 .portal-v3-astrolabe{position:absolute;z-index:3;left:50%;top:50%;width:min(65vw,65vh,540px);aspect-ratio:1;transform-style:preserve-3d;transform:translate(-50%,-50%) scale(.12) rotateY(64deg) rotateZ(-35deg);opacity:0;will-change:transform,opacity;pointer-events:none}
+.portal-v3.is-active .portal-v3-astrolabe{animation:v3-approach 4s cubic-bezier(.24,.58,.18,1) both}
+.portal-v3 .v3-ring{position:absolute;inset:0;border-radius:50%;transform-style:preserve-3d;box-sizing:border-box;backface-visibility:visible;border:clamp(3px,.7vw,9px) ridge #c7a56c;box-shadow:inset 0 0 0 2px #342312,0 0 0 2px #5b4126,inset 0 0 13px #fbe6b444,0 0 11px #d4a75c44;background:transparent}
+.portal-v3 .v3-ring::before{content:'';position:absolute;inset:7%;border:2px dashed #e6c88b99;border-radius:50%}
+.portal-v3 .v3-ring::after{content:'✧     ☼     ✦     ☽';position:absolute;left:0;right:0;top:-8%;text-align:center;font:clamp(10px,2.3vw,24px) Georgia,serif;letter-spacing:.5em;color:#e6c17e;text-shadow:0 0 5px #f2d8a0}
+.portal-v3 .v3-outer{animation:v3-spin 15s linear infinite}
+.portal-v3 .v3-oblique{inset:7%;border-color:#f0ce8c;animation:v3-tilt 8s linear infinite}
+.portal-v3 .v3-middle{inset:20%;border-color:#a9783d;animation:v3-spin-rev 11s linear infinite}
+.portal-v3 .v3-inner{inset:34%;border-color:#e5c389;animation:v3-tilt-rev 7s linear infinite}
+.portal-v3 .v3-core{position:absolute;inset:42%;border-radius:50%;background:radial-gradient(circle at 35% 25%,#fff3cf,#c99c54 24%,#3c6872 48%,#071727 78%);box-shadow:0 0 15px #f1c78199;animation:v3-breathe 1.8s ease-in-out infinite alternate}
+.portal-v3 .v3-emblem{position:absolute;inset:0;display:grid;place-items:center;color:#fbe9b5;font:clamp(24px,6vw,65px) Georgia,serif;text-shadow:0 0 16px #ffda86}
+.portal-v3 .portal-v3-vignette{position:absolute;z-index:2;inset:0;pointer-events:none;background:radial-gradient(ellipse at center,transparent 17%,#01071180 100%)}
+.portal-v3 .portal-v3-title{position:absolute;z-index:5;left:0;right:0;bottom:13%;text-align:center;font:clamp(18px,3vw,34px) Georgia,serif;letter-spacing:.15em;color:#ffe0a3;text-shadow:0 2px 12px #061522;opacity:0;pointer-events:none}
+.portal-v3 .portal-v3-title small{display:block;font-size:.48em;letter-spacing:.32em;margin-top:10px}
+.portal-v3.is-active .portal-v3-title{animation:v3-title 4s ease both}
+.portal-v3 .portal-v3-whiteout{position:absolute;inset:0;z-index:6;pointer-events:none;opacity:0;background:radial-gradient(circle at 50% 50%,#fff6e0,#e6bd78 45%,#7e6041 80%)}
+.portal-v3.is-active .portal-v3-whiteout{animation:v3-flash 4s ease-in both}
+.portal-v3 .portal-skip{position:absolute;z-index:8;right:clamp(12px,3vw,24px);top:clamp(12px,3vw,24px);border:1px solid #d9bb87;background:#0d2535;color:#f7dfb5;border-radius:20px;padding:10px 16px;cursor:pointer;font:14px Georgia,serif}
+@keyframes v3-approach{0%{opacity:0;transform:translate(-50%,-50%) scale(.13) rotateY(70deg) rotateZ(-50deg)}15%{opacity:1}44%{transform:translate(-50%,-50%) scale(.96) rotateY(15deg) rotateZ(0deg)}63%{transform:translate(-50%,-50%) scale(1.15) rotateY(0deg) rotateZ(18deg)}78%{opacity:1}100%{opacity:0;transform:translate(-50%,-50%) scale(5) rotateY(0deg) rotateZ(90deg)}}
+@keyframes v3-spin{to{transform:rotateZ(360deg)}}@keyframes v3-spin-rev{to{transform:rotateZ(-360deg)}}
+@keyframes v3-tilt{from{transform:rotateY(64deg) rotateZ(0deg)}to{transform:rotateY(64deg) rotateZ(360deg)}}
+@keyframes v3-tilt-rev{from{transform:rotateX(70deg) rotateZ(0deg)}to{transform:rotateX(70deg) rotateZ(-360deg)}}
+@keyframes v3-breathe{to{filter:brightness(1.5)}}
+@keyframes v3-title{0%,12%{opacity:0;transform:translateY(15px)}24%,56%{opacity:1;transform:translateY(0)}78%,100%{opacity:0}}
+@keyframes v3-flash{0%,78%{opacity:0}94%,100%{opacity:1}}
+@media(max-width:700px){.portal-v3 .portal-v3-astrolabe{width:min(78vw,65vh)}.portal-v3 .v3-ring{box-shadow:inset 0 0 0 1px #342312,0 0 0 1px #5b4126}.portal-v3 .v3-ring::after{display:none}.portal-v3 .portal-v3-title{font-size:18px}}
+@media(prefers-reduced-motion:reduce){.portal-v3 *{animation:none!important}}
 </style></head><body>
 <section id="accueil" class="image-home" aria-label="Accueil Éclats de l'Absolu">
  <div class="art-board">
@@ -316,23 +348,122 @@ select.addEventListener('change',update);search.addEventListener('input',update)
 }
 </script><script id="eclats-real-menu-js">
 (()=>{
- const board=document.querySelector('#accueil .art-board');if(!board)return;
- const enter=board.querySelector('.home-real-enter');if(!enter)return;
- const portal=document.createElement('div');portal.className='portal-transition';portal.setAttribute('aria-hidden','true');
- portal.innerHTML='<canvas class="portal-canvas" aria-hidden="true"></canvas><div class="portal-tunnel"><div class="tunnel-layer" style="--delay:0.00s;--rot:0deg"></div><div class="tunnel-layer" style="--delay:0.31s;--rot:27deg"></div><div class="tunnel-layer" style="--delay:0.62s;--rot:54deg"></div><div class="tunnel-layer" style="--delay:0.93s;--rot:81deg"></div></div><div class="portal-iris"></div><div class="portal-rings"><div class="portal-rune"></div><div class="portal-ring"></div><div class="portal-ring"></div><div class="portal-ring"></div><div class="portal-core"></div></div><div class="portal-veil"></div><div class="portal-word">ÉCLATS DE L’ABSOLU</div><div class="portal-subtitle">LE VOYAGE COMMENCE</div><div class="portal-flash"></div><button class="portal-skip" type="button">Passer l’animation →</button>';
- document.body.append(portal);
- const canvas=portal.querySelector('canvas'),ctx=canvas.getContext('2d');let timer=0,raf=0,particles=[],start=0,previousOverflow='';
- const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
- function resize(){const dpr=Math.min(devicePixelRatio||1,1.25);canvas.width=Math.round(innerWidth*dpr);canvas.height=Math.round(innerHeight*dpr);ctx.setTransform(dpr,0,0,dpr,0,0)}
- function prepare(){resize();const count=Math.min(100,Math.max(45,Math.floor(innerWidth*innerHeight/12500)));particles=Array.from({length:count},()=>({angle:Math.random()*Math.PI*2,depth:.04+Math.random()*.94,twist:(Math.random()-.5)*.8,size:.4+Math.random()*1.7,hue:Math.random()>.28?'240,208,150':'172,214,234'}))}
- function draw(now){if(!portal.classList.contains('is-active'))return;const t=(now-start)/1000,w=innerWidth,h=innerHeight,cx=w/2,cy=h*.49;ctx.clearRect(0,0,w,h);
- 
- for(const p of particles){const d=(p.depth+t*(.19+.12*t))%1;const perspective=Math.pow(d,2.5);const a=p.angle+t*(.3+.19*t)+p.twist;const radius=perspective*Math.max(w,h)*1.12;const x=cx+Math.cos(a)*radius,y=cy+Math.sin(a)*radius*.68;const alpha=Math.min(.92,.12+perspective*1.4);ctx.fillStyle=`rgba(${p.hue},${alpha})`;ctx.beginPath();ctx.arc(x,y,p.size*(.5+perspective*2.4),0,Math.PI*2);ctx.fill();if(d>.78){ctx.lineWidth=Math.max(.6,p.size*perspective*1.3);ctx.strokeStyle=`rgba(${p.hue},${alpha*.6})`;ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x+Math.cos(a)*perspective*(38+t*23),y+Math.sin(a)*perspective*(28+t*17));ctx.stroke()}}
- raf=requestAnimationFrame(draw)}
- function finish(){clearTimeout(timer);cancelAnimationFrame(raf);timer=0;raf=0;ctx.clearRect(0,0,canvas.width,canvas.height);portal.classList.remove('is-active');portal.setAttribute('aria-hidden','true');document.body.style.overflow=previousOverflow;document.querySelector('#spheres')?.scrollIntoView({behavior:'auto'});history.pushState(null,'','#spheres')}
- portal.querySelector('.portal-skip').addEventListener('click',finish);
- enter.addEventListener('click',e=>{e.preventDefault();if(portal.classList.contains('is-active'))return;if(reduced){document.querySelector('#spheres')?.scrollIntoView({behavior:'auto'});history.pushState(null,'','#spheres');return}previousOverflow=document.body.style.overflow;portal.classList.remove('is-active');void portal.offsetWidth;portal.classList.add('is-active');portal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';prepare();start=performance.now();raf=requestAnimationFrame(draw);timer=setTimeout(finish,4200)});
- document.addEventListener('keydown',e=>{if(e.key==='Escape'&&portal.classList.contains('is-active'))finish()});
+'use strict';
+const board=document.querySelector('#accueil .art-board');
+const enter=board?.querySelector('.home-real-enter');
+if(!enter)return;
+const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const portal=document.createElement('div');
+portal.className='portal-transition portal-v3';portal.setAttribute('aria-hidden','true');
+portal.innerHTML=`<canvas class="portal-canvas" aria-hidden="true"></canvas>
+<div class="portal-v3-stars" aria-hidden="true"></div>
+<div class="portal-v3-astrolabe" aria-hidden="true">
+ <div class="v3-ring v3-outer"></div><div class="v3-ring v3-oblique"></div>
+ <div class="v3-ring v3-middle"></div><div class="v3-ring v3-inner"></div>
+ <div class="v3-core"></div><div class="v3-emblem">✧</div>
+</div>
+<div class="portal-v3-vignette" aria-hidden="true"></div>
+<div class="portal-v3-title">ÉCLATS DE L’ABSOLU<small>LE PASSAGE DES MONDES</small></div>
+<div class="portal-v3-whiteout" aria-hidden="true"></div>
+<button type="button" class="portal-skip">Passer l’animation →</button>`;
+document.body.append(portal);
+const canvas=portal.querySelector('canvas');
+const mobile=matchMedia('(max-width: 700px), (pointer: coarse)').matches;
+let gl=null,program=null,uniforms=null,frame=0,start=0,timer=0,active=false,oldOverflow='';
+let fallbackCtx=null,stars=[];
+function shader(type,source){const s=gl.createShader(type);gl.shaderSource(s,source);gl.compileShader(s);if(!gl.getShaderParameter(s,gl.COMPILE_STATUS))throw Error(gl.getShaderInfoLog(s));return s}
+function initGL(){
+ try{
+  gl=canvas.getContext('webgl',{alpha:false,antialias:false,depth:false,stencil:false,preserveDrawingBuffer:false,powerPreference:'low-power'});
+  if(!gl)throw Error('WebGL unavailable');
+  const vert=shader(gl.VERTEX_SHADER,`attribute vec2 a;varying vec2 v;void main(){v=a;gl_Position=vec4(a,0.,1.);}`);
+  const frag=shader(gl.FRAGMENT_SHADER,`precision mediump float;
+  varying vec2 v;uniform vec2 res;uniform float time;uniform float progress;
+  float hash(float n){return fract(sin(n*127.1)*43758.5453);}
+  float smoothPulse(float x,float c,float w){return 1.-smoothstep(0.,w,abs(x-c));}
+  void main(){
+    vec2 uv=v;uv.x*=res.x/res.y;
+    float radius=length(uv);float angle=atan(uv.y,uv.x);
+    float p=smoothstep(.20,.84,progress);
+    float travel=time*(.34+1.4*p);
+    float depth=1.0/max(radius,.055);
+    float bend=angle+0.14*sin(depth*.45+travel*.6);
+    float az=bend*13.0+1.1*sin(depth*.34);
+    float grid=pow(max(0.,cos(az)),26.);
+    float rings=pow(max(0.,cos(depth*3.3-travel*9.0)),23.);
+    float threads=pow(max(0.,cos(az*2.0+depth*.65-travel*2.0)),38.);
+    float tunnel=smoothstep(.12,.5,p)*smoothstep(.02,.22,radius);
+    float fall=exp(-radius*.85);
+    vec3 col=vec3(.012,.039,.070);
+    col+=vec3(.015,.050,.085)*(1.0-radius*.32);
+    col+=tunnel*fall*(grid*.15+rings*.36+threads*.10)*vec3(.96,.66,.30);
+    col+=tunnel*fall*rings*.08*vec3(.18,.55,.75);
+    float horizon=exp(-radius*(13.0-7.0*p));
+    col+=horizon*vec3(.96,.74,.42)*(.11+.8*p);
+    // Fine stars in angular-depth space, deterministic and GPU-only.
+    float cellA=floor((angle+3.14159)*37.0);
+    float cellD=floor(depth*1.7-travel*1.5);
+    float h=hash(cellA*19.0+cellD*71.0);
+    float sparkle=pow(max(0.,cos(angle*37.0*6.283+depth*.03)),70.);
+    col+=tunnel*step(.91,h)*sparkle*.15*vec3(.85,.92,1.);
+    col*=1.0-smoothstep(.7,1.9,radius)*.4;
+    gl_FragColor=vec4(pow(clamp(col,0.,1.),vec3(.87)),1.);
+  }`);
+  program=gl.createProgram();gl.attachShader(program,vert);gl.attachShader(program,frag);gl.linkProgram(program);
+  if(!gl.getProgramParameter(program,gl.LINK_STATUS))throw Error(gl.getProgramInfoLog(program));
+  gl.useProgram(program);const buffer=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buffer);
+  gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,-1,1,1,-1,1,1]),gl.STATIC_DRAW);
+  const loc=gl.getAttribLocation(program,'a');gl.enableVertexAttribArray(loc);gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
+  uniforms={res:gl.getUniformLocation(program,'res'),time:gl.getUniformLocation(program,'time'),progress:gl.getUniformLocation(program,'progress')};
+  return true;
+ }catch(e){console.warn('Portail WebGL : mode léger activé',e);gl=null;return false;}
+}
+let webglOK=initGL();
+if(!webglOK){ // A second canvas avoids requesting two incompatible contexts on the same canvas.
+ const alt=document.createElement('canvas');alt.className='portal-canvas';canvas.replaceWith(alt);
+ fallbackCtx=alt.getContext('2d',{alpha:false});
+ stars=Array.from({length:65},(_,i)=>({angle:i*2.399,seed:(i*.6180339)%1}));
+}
+function resize(){
+ const c=portal.querySelector('canvas');
+ const scale=webglOK?(mobile?.58:.78):(mobile?.7:1);
+ const w=Math.max(1,Math.round(innerWidth*scale)),h=Math.max(1,Math.round(innerHeight*scale));
+ if(c.width!==w||c.height!==h){c.width=w;c.height=h;if(gl)gl.viewport(0,0,w,h)}
+}
+function render(ms){
+ if(!active)return;
+ const elapsed=Math.min(4.0,(ms-start)/1000);
+ const p=elapsed/4;
+ if(webglOK){gl.useProgram(program);gl.uniform2f(uniforms.res,canvas.width,canvas.height);gl.uniform1f(uniforms.time,elapsed);gl.uniform1f(uniforms.progress,p);gl.drawArrays(gl.TRIANGLES,0,6)}
+ else if(fallbackCtx){const c=fallbackCtx.canvas,w=c.width,h=c.height,cx=w/2,cy=h/2;
+  fallbackCtx.fillStyle='#061522';fallbackCtx.fillRect(0,0,w,h);
+  const grd=fallbackCtx.createRadialGradient(cx,cy,1,cx,cy,Math.max(w,h)*.65);
+  grd.addColorStop(0,'#a87b46');grd.addColorStop(.17,'#143e55');grd.addColorStop(1,'#061522');fallbackCtx.fillStyle=grd;fallbackCtx.fillRect(0,0,w,h);
+  fallbackCtx.strokeStyle='rgba(224,178,103,.5)';
+  for(let i=0;i<7;i++){const r=((i/7+elapsed*.34)%1)**2*Math.max(w,h)*.8;fallbackCtx.beginPath();fallbackCtx.ellipse(cx,cy,r,r*.7,0,0,Math.PI*2);fallbackCtx.stroke()}
+  for(const s of stars){const d=(s.seed+elapsed*.32)%1,r=d*d*Math.max(w,h)*.7;
+   fallbackCtx.fillStyle='rgba(244,219,164,'+(.2+d*.8)+')';fallbackCtx.fillRect(cx+Math.cos(s.angle)*r,cy+Math.sin(s.angle)*r*.7,1.5+d*2,1.5+d*2)}
+ }
+ frame=requestAnimationFrame(render);
+}
+function finish(){if(!active)return;active=false;clearTimeout(timer);cancelAnimationFrame(frame);frame=0;timer=0;
+ portal.classList.remove('is-active');portal.setAttribute('aria-hidden','true');document.body.style.overflow=oldOverflow;
+ document.getElementById('spheres')?.scrollIntoView({behavior:'instant',block:'start'});
+ history.replaceState(null,'','#spheres');
+}
+function play(e){if(e)e.preventDefault();if(active)return;
+ if(reduced){document.getElementById('spheres')?.scrollIntoView({behavior:'instant'});history.replaceState(null,'','#spheres');return}
+ oldOverflow=document.body.style.overflow;document.body.style.overflow='hidden';resize();
+ // Remove and re-add class, forcing a new animation timeline on every visit.
+ portal.classList.remove('is-active');void portal.offsetWidth;
+ active=true;portal.classList.add('is-active');portal.setAttribute('aria-hidden','false');
+ start=performance.now();frame=requestAnimationFrame(render);timer=setTimeout(finish,4000);
+}
+enter.addEventListener('click',play);
+portal.querySelector('.portal-skip').addEventListener('click',finish);
+document.addEventListener('keydown',e=>{if(e.key==='Escape')finish()});
+window.addEventListener('resize',()=>{if(active)resize()},{passive:true});
+document.addEventListener('visibilitychange',()=>{if(document.hidden&&active)finish()});
 })();
 </script>
 </body></html>
