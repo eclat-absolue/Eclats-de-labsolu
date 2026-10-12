@@ -235,9 +235,15 @@ main>.section{scroll-margin-top:80px}
 .portal-v3 .portal-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:1;object-fit:cover}
 .portal-v3 .portal-v3-astrolabe{position:absolute;z-index:3;left:50%;top:50%;width:min(65vw,65vh,540px);aspect-ratio:1;transform-style:preserve-3d;transform:translate(-50%,-50%) scale(.12) rotateY(64deg) rotateZ(-35deg);opacity:0;will-change:transform,opacity;pointer-events:none}
 .portal-v3.is-active .portal-v3-astrolabe{animation:v3-approach 4s cubic-bezier(.24,.58,.18,1) both}
-.portal-v3 .v3-ring{position:absolute;inset:0;border-radius:50%;transform-style:preserve-3d;box-sizing:border-box;backface-visibility:visible;border:clamp(3px,.7vw,9px) ridge #c7a56c;box-shadow:inset 0 0 0 2px #342312,0 0 0 2px #5b4126,inset 0 0 13px #fbe6b444,0 0 11px #d4a75c44;background:transparent}
-.portal-v3 .v3-ring::before{content:'';position:absolute;inset:7%;border:2px dashed #e6c88b99;border-radius:50%}
+.portal-v3 .v3-ring{position:absolute;inset:0;border-radius:50%;transform-style:preserve-3d;box-sizing:border-box;backface-visibility:visible;border:clamp(3px,.7vw,9px) ridge #c7a56c;box-shadow:inset 0 0 0 2px #342312,0 0 0 2px #5b4126,inset 0 0 13px #fbe6b444,0 0 11px #d4a75c44;background:
+conic-gradient(from 25deg,transparent 0 5%,#ffe7a533 8%,transparent 12% 22%,#a2662530 27%,transparent 32% 48%,#f5ce7438 52%,transparent 59% 77%,#f9d58b2b 83%,transparent 89%),
+radial-gradient(circle at 26% 20%,#fff1c922,transparent 44%);
+filter:drop-shadow(0 4px 5px #01060999)}
+.portal-v3 .v3-ring::before{content:'';position:absolute;inset:7%;border:2px dashed #e6c88b99;border-radius:50%;box-shadow:inset 0 0 0 1px #fff0c433,0 0 0 1px #28160d}
 .portal-v3 .v3-ring::after{content:'✧     ☼     ✦     ☽';position:absolute;left:0;right:0;top:-8%;text-align:center;font:clamp(10px,2.3vw,24px) Georgia,serif;letter-spacing:.5em;color:#e6c17e;text-shadow:0 0 5px #f2d8a0}
+/* Layered machined brass: etched graduations, anisotropic highlights and shadows. */
+.portal-v3 .v3-outer{background-image:repeating-conic-gradient(from 0deg,#ffdf8b30 0deg .28deg,transparent .28deg 4deg),radial-gradient(circle at 24% 19%,#ffebb144,transparent 55%);border-style:groove;border-color:#e2b76d #6b431e #3c2515 #f9d997}
+.portal-v3 .v3-oblique{background-image:repeating-conic-gradient(#ffe6a133 0deg .5deg,transparent .5deg 8deg);border-style:ridge;box-shadow:inset 0 0 12px #fff3b155,0 0 16px #090d16}
 .portal-v3 .v3-outer{animation:v3-spin 15s linear infinite}
 .portal-v3 .v3-oblique{inset:7%;border-color:#f0ce8c;animation:v3-tilt 8s linear infinite}
 .portal-v3 .v3-middle{inset:20%;border-color:#a9783d;animation:v3-spin-rev 11s linear infinite}
@@ -259,6 +265,7 @@ main>.section{scroll-margin-top:80px}
 @keyframes v3-title{0%,12%{opacity:0;transform:translateY(15px)}24%,56%{opacity:1;transform:translateY(0)}78%,100%{opacity:0}}
 @keyframes v3-flash{0%,78%{opacity:0}94%,100%{opacity:1}}
 @media(max-width:700px){.portal-v3 .portal-v3-astrolabe{width:min(78vw,65vh)}.portal-v3 .v3-ring{box-shadow:inset 0 0 0 1px #342312,0 0 0 1px #5b4126}.portal-v3 .v3-ring::after{display:none}.portal-v3 .portal-v3-title{font-size:18px}}
+.portal-v3:not(.is-active) .v3-ring,.portal-v3:not(.is-active) .v3-core{animation-play-state:paused!important}
 @media(prefers-reduced-motion:reduce){.portal-v3 *{animation:none!important}}
 </style></head><body>
 <section id="accueil" class="image-home" aria-label="Accueil Éclats de l'Absolu">
@@ -396,10 +403,17 @@ function initGL(){
     float fall=exp(-radius*.85);
     vec3 col=vec3(.012,.039,.070);
     col+=vec3(.015,.050,.085)*(1.0-radius*.32);
+    float neb=sin(uv.x*3.7+sin(uv.y*2.8+time*.12))*sin(uv.y*4.1-uv.x*1.7);
+    float cloud=smoothstep(.25,.9,neb)*exp(-radius*.7);
+    col+=cloud*vec3(.024,.062,.092);
+    float halo=exp(-pow((radius-.31-.08*sin(time*.4))*5.5,2.));
+    col+=halo*(.03+.08*p)*vec3(.65,.38,.13);
     col+=tunnel*fall*(grid*.15+rings*.36+threads*.10)*vec3(.96,.66,.30);
     col+=tunnel*fall*rings*.08*vec3(.18,.55,.75);
     float horizon=exp(-radius*(13.0-7.0*p));
     col+=horizon*vec3(.96,.74,.42)*(.11+.8*p);
+    float lens=exp(-pow((radius-(.13+.12*p))*12.,2.));
+    col+=lens*(.04+.22*p)*vec3(.9,.56,.24);
     // Fine stars in angular-depth space, deterministic and GPU-only.
     float cellA=floor((angle+3.14159)*37.0);
     float cellD=floor(depth*1.7-travel*1.5);
@@ -426,7 +440,7 @@ if(!webglOK){ // A second canvas avoids requesting two incompatible contexts on 
 }
 function resize(){
  const c=portal.querySelector('canvas');
- const scale=webglOK?(mobile?.58:.78):(mobile?.7:1);
+ const scale=webglOK?(mobile?.55:.75):(mobile?.7:1);
  const w=Math.max(1,Math.round(innerWidth*scale)),h=Math.max(1,Math.round(innerHeight*scale));
  if(c.width!==w||c.height!==h){c.width=w;c.height=h;if(gl)gl.viewport(0,0,w,h)}
 }
