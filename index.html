@@ -61,8 +61,7 @@ main>.section{scroll-margin-top:80px}
 .museum-dialog h3{color:#f7d99e;margin:10px 0 3px}
 .interactive-art{position:relative;margin:20px auto;max-width:1040px;border:7px ridge #caa267;box-shadow:0 12px 40px #0007}
 .interactive-art img{display:block;width:100%;height:auto}
-.art-point{position:absolute;transform:translate(-50%,-50%);width:36px;height:36px;border-radius:50%;border:2px solid #fff0ba;background:#102c3bdd;color:#ffe5a0;box-shadow:0 0 0 5px #e6b75e55;cursor:pointer;display:grid;place-items:center;font-size:20px}
-.art-point:hover,.art-point:focus-visible{background:#d3a24e;color:#071b26}
+
 .art-note{margin:12px auto 20px;padding:16px 20px;max-width:1040px;border:1px solid #c7a06b;background:#102832;color:#f3dfb5;min-height:76px}
 .explore-controls{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:20px auto}
 .explore-controls button{padding:10px 18px;border:1px solid #b9945b;background:#142b37;color:#f4ddac;border-radius:24px}
@@ -72,7 +71,7 @@ main>.section{scroll-margin-top:80px}
 .explore-half h3{color:#765026}
 .explore-label{font:12px Cinzel,serif;letter-spacing:.15em;color:#95682d}
 .explore-hint{text-align:center;color:#d6b982}
-@media(max-width:650px){.explore-panel{grid-template-columns:1fr}.art-point{width:30px;height:30px}.museum-dialog img{max-height:60dvh}}
+@media(max-width:650px){.explore-panel{grid-template-columns:1fr}.museum-dialog img{max-height:60dvh}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
 </style>
 <style>
@@ -125,15 +124,15 @@ main>.section{scroll-margin-top:80px}
 <main><section id="spheres" class="section light"><div class="shell"><div class="sectionhead"><div class="eyebrow">Les mondes de l'œuvre</div><h2>Explorer les six sphères</h2><p class="intro">Six portes d'entrée pour parcourir les formes, les métamorphoses et les correspondances de la Mythologie Cosmik.</p></div><div class="tilegrid"><article class="tile"><span class="num">SPHÈRE I</span><h3>Origines</h3><p>Les premières formes, les commencements et la question de l'unité.</p><a href="#textes">Lire →</a></article><article class="tile"><span class="num">SPHÈRE II</span><h3>Formes</h3><p>Les motifs qui traversent les règnes et les échelles du vivant.</p><a href="#correspondances">Comparer →</a></article><article class="tile"><span class="num">SPHÈRE III</span><h3>Transformations</h3><p>Du végétal à la machine, des cycles aux métamorphoses.</p><a href="#organik">Explorer →</a></article><article class="tile"><span class="num">SPHÈRE IV</span><h3>Correspondances</h3><p>Des rapprochements sensibles entre le micro et le méga.</p><a href="#correspondances">Observer →</a></article><article class="tile"><span class="num">SPHÈRE V</span><h3>Le Passage</h3><p>Les seuils, les frontières et les changements de perspective.</p><a href="#experiences">Traverser →</a></article><article class="tile"><span class="num">SPHÈRE VI</span><h3>Les Deux Miroirs</h3><p>Deux regards sur une même architecture imaginaire.</p><a href="#organik">Découvrir →</a></article></div></div></section>
 <section id="correspondances" class="section dark"><div class="shell split"><div><div class="eyebrow">Correspondances</div><h2>Du MICRO au MÉGA</h2><p class="intro">Une invitation à observer des ressemblances de forme sans confondre analogie artistique et explication scientifique.</p><div class="comparison" role="tablist" aria-label="Correspondances"><button class="tab" role="tab" aria-selected="true" data-topic="0">Ramifications</button><button class="tab" role="tab" aria-selected="false" data-topic="1">Spirales</button><button class="tab" role="tab" aria-selected="false" data-topic="2">Réseaux</button></div><div class="comparebox" id="comparebox" aria-live="polite"><strong>Ramifications</strong><p>Une branche, une veine, un fleuve : des formes qui invitent à changer d'échelle et de regard.</p></div></div><div class="medallion"><div><strong>MICRO<br>✦<br>MÉGA</strong><small>Observer • Comparer • Questionner</small></div></div></div></section>
 <section id="organik" class="section light"><div class="shell split"><div class="medallion" style="background:radial-gradient(circle,#e4d1a5,#698079 60%,#233b3f);border-color:#956a38"><div><strong style="color:#f9e6b8">ORGANIK<br>↔<br>MÉCANIK</strong><small>La forme en mouvement</small></div></div><div><div class="eyebrow">Métamorphoses</div><h2>ORGANIK ↔ MÉCANIK</h2><p class="intro">L'œuvre rapproche les textures du vivant et les architectures de la technique. Les ailes deviennent mécanismes, les nervures deviennent réseaux, et chaque forme suggère une nouvelle lecture.</p><a class="btn" href="#images">Voir les créations →</a></div></div></section>
-<section id="oeuvres-interactives" class="section dark"><div class="shell"><div class="sectionhead"><div class="eyebrow">Atlas vivant</div><h2>Les illustrations à explorer</h2><p class="intro">Touchez les étoiles dorées sur les planches pour découvrir leurs détails et leurs correspondances.</p></div>
+<section id="oeuvres-interactives" class="section dark"><div class="shell"><div class="sectionhead"><div class="eyebrow">Atlas vivant</div><h2>Les illustrations à explorer</h2><p class="intro">Découvrez les illustrations dans leur intégralité, sans éléments superposés.</p></div>
 <div class="interactive-art"><img src="morphologie-passage.webp" alt="Planche illustrée : morphologie d'un passage, du micro au méga" loading="lazy">
-<button class="art-point" style="left:49%;top:25%" data-note="passage" aria-label="Découvrir les étapes du passage">✦</button>
-<button class="art-point" style="left:83%;top:22%" data-note="echelles" aria-label="Découvrir les différentes échelles">✦</button>
-<button class="art-point" style="left:52%;top:83%" data-note="cosmos" aria-label="Découvrir la morphologie cosmique">✦</button></div>
-<div id="art-note" class="art-note" aria-live="polite">✧ Choisissez une étoile dorée pour ouvrir une lecture de l'illustration.</div>
+
+
+</div>
+
 <div class="interactive-art"><img src="poufff.webp" alt="Illustration POUFFF : du micro au méga avec un robot et un chat" loading="lazy">
-<button class="art-point" style="left:45%;top:14%" data-note="trajectoire" aria-label="Explorer la trajectoire">✦</button>
-<button class="art-point" style="left:16%;top:39%" data-note="domaines" aria-label="Explorer les domaines">✦</button></div>
+
+</div>
 </div></section>
 <section id="explorateur" class="section dark"><div class="shell"><div class="sectionhead"><div class="eyebrow">Laboratoire poétique</div><h2>Explorateur MICRO ↔ MÉGA</h2><p class="intro">Une même silhouette peut évoquer des réalités très différentes. Changez de motif pour comparer les échelles.</p></div>
 <div class="explore-controls" role="group" aria-label="Choisir une correspondance">
@@ -160,13 +159,6 @@ const db=createClient('https://jvhxhgwswcauunhstkpm.supabase.co','sb_publishable
 const gallery=document.getElementById('gallery'),status=document.getElementById('gallery-status');
 try{const {data,error}=await db.from('collections_images').select('id,collection,titre,description,image_url,ordre,created_at').order('ordre',{ascending:true}).order('created_at',{ascending:true});if(error)throw error;gallery.replaceChildren();if(!data?.length){const d=document.createElement('div');d.className='empty';d.textContent='Les premières images seront bientôt exposées ici.';gallery.append(d)}else{for(const r of data){const card=document.createElement('article');card.className='gallery-card';card.tabIndex=0;card.setAttribute('role','button');card.setAttribute('aria-label','Agrandir : '+r.titre);card.dataset.collection=r.collection||'';card.dataset.search=((r.titre||'')+' '+(r.description||'')).toLowerCase();card.addEventListener('click',()=>openMuseum(r));card.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openMuseum(r)}});const im=document.createElement('img');im.src=r.image_url;im.alt=r.titre;im.loading='lazy';const inner=document.createElement('div');inner.className='inner';const tag=document.createElement('div');tag.className='eyebrow';tag.textContent=r.collection;const title=document.createElement('h3');title.textContent=r.titre;const desc=document.createElement('p');desc.textContent=r.description||'';inner.append(tag,title,desc);card.append(im,inner);gallery.append(card)}status.textContent=data.length+' image(s) dans la galerie.';setupMuseumFilters()}}catch(e){gallery.replaceChildren();const d=document.createElement('div');d.className='empty';d.textContent='La galerie est momentanément indisponible. Le reste du site reste accessible.';gallery.append(d);console.warn(e)}
 </script><script>
-const artNotes={
-passage:"Ouverture → contraction → canalisation → transformation → sortie : une lecture en cinq mouvements du passage.",
-echelles:"Atome, cellule, orifice biologique, volcan, tourbillon, trou noir : l'œuvre rapproche des formes, sans les déclarer scientifiquement équivalentes.",
-cosmos:"Le passage cosmique est une métaphore visuelle des seuils et des transformations.",
-trajectoire:"Source → émission → trajectoire → transformation → accumulation ou sortie : suivez le parcours de POUFFF.",
-domaines:"ATOMIK, ORGANIK, MÉKANIK, COSMIK : quatre manières de changer d'échelle et de point de vue."};
-document.querySelectorAll('[data-note]').forEach(b=>b.addEventListener('click',()=>{document.getElementById('art-note').textContent=artNotes[b.dataset.note]}));
 const explorer={
 ramifications:["Les nervures d'une feuille","Un dessin ramifié distribue l'eau et les ressources dans le vivant.","Le réseau d'un fleuve","À grande échelle, des cours d'eau peuvent présenter des bifurcations visuellement comparables."],
 spirales:["La coquille d'un mollusque","Une croissance progressive peut dessiner une spirale.","Une galaxie spirale","La répartition des étoiles et du gaz produit parfois une silhouette spiralée."],
