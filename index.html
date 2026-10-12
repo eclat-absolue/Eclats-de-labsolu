@@ -177,7 +177,46 @@ main>.section{scroll-margin-top:80px}
 @keyframes portal-iris{0%,25%{opacity:0}42%,80%{opacity:.65}100%{opacity:0}}
 @media(prefers-reduced-motion:reduce){.portal-transition .tunnel-layer,.portal-transition .portal-iris{animation:none!important}}
 </style>
-</head><body>
+<style id="eclats-spheres-real-and-replay">
+/* Menu des six Sphères : vrais liens superposés à la fresque, dans les coordonnées de l'image. */
+.image-home .home-sphere-menu{
+ position:absolute;z-index:10;left:83.25%;top:39.3%;width:15.7%;height:22%;
+ box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-evenly;
+ padding:.5% .55%;overflow:hidden;border:2px solid #a36d30;border-radius:2.2%;
+ background:linear-gradient(105deg,#f5d59e 0%,#f9dfa9 48%,#edc28b 100%);
+ box-shadow:inset 0 0 0 1px #ffe5ae,inset 0 0 12px #a4774166;
+ color:#34210f;font-family:Georgia,serif;
+}
+.home-sphere-title{font-weight:bold;text-align:center;font-size:clamp(8px,1.55vw,22px);line-height:1.08;margin:0 0 1%}
+.home-sphere-menu .sphere-link{display:grid;grid-template-columns:12% 32% 1fr;gap:2%;align-items:center;
+ flex:1;min-height:0;padding:0 1%;color:#382313;text-decoration:none;text-align:left;
+ font-size:clamp(5px,.88vw,13px);white-space:nowrap;transition:background .25s,color .25s,filter .25s;border-radius:5px}
+.home-sphere-menu .sphere-link:hover,.home-sphere-menu .sphere-link:focus-visible{
+ color:#ffecbf;background:#12354c;filter:drop-shadow(0 0 4px #f0c678);outline:1px solid #eac17b}
+.home-sphere-menu .sphere-dot{width:90%;aspect-ratio:1;border-radius:50%;border:1px solid #e6c98e;
+ box-shadow:inset -2px -2px 3px #15293b99,0 0 4px #a16b2d}
+.home-sphere-menu .d1{background:radial-gradient(circle at 30% 25%,#b3e5fa,#095f9e 65%,#061d45)}
+.home-sphere-menu .d2{background:radial-gradient(circle at 30% 25%,#d5f1a2,#2e8d69 65%,#153e3c)}
+.home-sphere-menu .d3{background:radial-gradient(circle at 30% 25%,#ffcaec,#9b2c7f 65%,#361448)}
+.home-sphere-menu .d4{background:radial-gradient(circle at 30% 25%,#ffdd9b,#bf3c55 65%,#541c32)}
+.home-sphere-menu .d5{background:radial-gradient(circle at 30% 25%,#aff5ed,#218a9d 65%,#0b3d53)}
+.home-sphere-menu .d6{background:radial-gradient(circle at 30% 25%,#f8e6b3,#8a5d83 65%,#392c55)}
+@media(max-width:600px){
+ .image-home .home-sphere-menu{border-width:1px;padding:.3%}
+ .home-sphere-title{font-size:clamp(7px,1.6vw,11px)}
+ .home-sphere-menu .sphere-link{font-size:clamp(4px,.9vw,7px);gap:1%}
+}
+/* Toutes les animations doivent être remises à zéro entre deux traversées. */
+.portal-transition:not(.is-active) .portal-rings,
+.portal-transition:not(.is-active) .portal-ring,
+.portal-transition:not(.is-active) .portal-core,
+.portal-transition:not(.is-active) .portal-rune,
+.portal-transition:not(.is-active) .portal-word,
+.portal-transition:not(.is-active) .portal-subtitle,
+.portal-transition:not(.is-active) .portal-flash,
+.portal-transition:not(.is-active) .portal-iris,
+.portal-transition:not(.is-active) .tunnel-layer{animation:none!important}
+</style></head><body>
 <section id="accueil" class="image-home" aria-label="Accueil Éclats de l'Absolu">
  <div class="art-board">
   <img src="./accueil-eclats.png" alt="Éclats de l'Absolu : fresque cosmique sur parchemin, avec nature, galaxies, œil, aigle et menu illustré" fetchpriority="high">
@@ -194,7 +233,15 @@ main>.section{scroll-margin-top:80px}
    <a href="#apropos" class="home-real-link"><span class="menu-glyph" aria-hidden="true">❧</span><span>À propos</span></a>
   </nav>
   <a class="home-real-enter" href="#spheres" aria-label="Entrer dans les Sphères"><span aria-hidden="true">✦</span> ENTRER</a>
-  <a class="home-real-spheres" href="#spheres" aria-label="Explorer les six Sphères"></a>
+  <nav class="home-sphere-menu" aria-label="Explorer les six Sphères">
+  <div class="home-sphere-title">LES SPHÈRES</div>
+  <a href="#textes" class="sphere-link"><span class="sphere-dot d1"></span><span>Sphère I</span><span>Origines</span></a>
+  <a href="#correspondances" class="sphere-link"><span class="sphere-dot d2"></span><span>Sphère II</span><span>Formes</span></a>
+  <a href="#organik" class="sphere-link"><span class="sphere-dot d3"></span><span>Sphère III</span><span>Transformations</span></a>
+  <a href="#correspondances" class="sphere-link"><span class="sphere-dot d4"></span><span>Sphère IV</span><span>Correspondances</span></a>
+  <a href="#passage" class="sphere-link"><span class="sphere-dot d5"></span><span>Sphère V</span><span>Le Passage</span></a>
+  <a href="#organik" class="sphere-link"><span class="sphere-dot d6"></span><span>Sphère VI</span><span>Les Deux Miroirs</span></a>
+ </nav>
  </div>
  <nav class="mobile-menu" aria-label="Navigation rapide"><a href="#spheres">Sphères</a><a href="#correspondances">Micro ↔ Méga</a><a href="#organik">Organik ↔ Mékanik</a><a href="#explorateur">Explorateur</a><a href="#images">Images</a><a href="#textes">Textes</a><a href="#experiences">Expériences</a></nav>
  <p class="home-hint">Touchez les éléments de la fresque pour explorer l'œuvre ↓</p>
@@ -270,7 +317,7 @@ select.addEventListener('change',update);search.addEventListener('input',update)
  const bg=ctx.createRadialGradient(cx,cy,5,cx,cy,Math.max(w,h)*.75);bg.addColorStop(0,'#214357');bg.addColorStop(.35,'#081b2a');bg.addColorStop(1,'#01060d');ctx.fillStyle=bg;ctx.fillRect(0,0,w,h);
  for(const p of particles){const d=(p.depth+t*(.19+.12*t))%1;const perspective=Math.pow(d,2.5);const a=p.angle+t*(.3+.19*t)+p.twist;const radius=perspective*Math.max(w,h)*1.12;const x=cx+Math.cos(a)*radius,y=cy+Math.sin(a)*radius*.68;const alpha=Math.min(.92,.12+perspective*1.4);ctx.fillStyle=`rgba(${p.hue},${alpha})`;ctx.beginPath();ctx.arc(x,y,p.size*(.5+perspective*2.4),0,Math.PI*2);ctx.fill();if(d>.62){ctx.lineWidth=Math.max(.6,p.size*perspective*1.3);ctx.strokeStyle=`rgba(${p.hue},${alpha*.6})`;ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x+Math.cos(a)*perspective*(38+t*23),y+Math.sin(a)*perspective*(28+t*17));ctx.stroke()}}
  raf=requestAnimationFrame(draw)}
- function finish(){clearTimeout(timer);cancelAnimationFrame(raf);portal.classList.remove('is-active');portal.setAttribute('aria-hidden','true');document.body.style.overflow=previousOverflow;document.querySelector('#spheres')?.scrollIntoView({behavior:'auto'});history.pushState(null,'','#spheres')}
+ function finish(){clearTimeout(timer);cancelAnimationFrame(raf);timer=0;raf=0;portal.classList.remove('is-active');portal.setAttribute('aria-hidden','true');document.body.style.overflow=previousOverflow;document.querySelector('#spheres')?.scrollIntoView({behavior:'auto'});history.pushState(null,'','#spheres')}
  portal.querySelector('.portal-skip').addEventListener('click',finish);
  enter.addEventListener('click',e=>{e.preventDefault();if(portal.classList.contains('is-active'))return;if(reduced){document.querySelector('#spheres')?.scrollIntoView({behavior:'auto'});history.pushState(null,'','#spheres');return}previousOverflow=document.body.style.overflow;portal.classList.remove('is-active');void portal.offsetWidth;portal.classList.add('is-active');portal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';prepare();start=performance.now();raf=requestAnimationFrame(draw);timer=setTimeout(finish,4200)});
  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&portal.classList.contains('is-active'))finish()});
