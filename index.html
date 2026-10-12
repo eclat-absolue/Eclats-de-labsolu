@@ -91,6 +91,26 @@ main>.section{scroll-margin-top:80px}
 .image-home .home-hint{display:block!important}
 @media(max-width:600px){.image-home{padding:0 0 10px!important}.image-home .art-board{width:100%!important}}
 </style>
+
+<style>
+/* Animations douces, sans toucher aux images ni à l'accueil */
+@media (prefers-reduced-motion:no-preference){
+  .inner-navigation{animation:navReveal .55s ease-out both}
+  @keyframes navReveal{from{opacity:0;transform:translateY(-16px)}to{opacity:1;transform:translateY(0)}}
+  .section .sectionhead h2{transition:letter-spacing .5s ease,text-shadow .5s ease}
+  .section .sectionhead h2:hover{letter-spacing:.035em;text-shadow:0 0 15px #cda85b66}
+  .explore-half{transition:opacity .28s ease,transform .28s ease,background .4s ease}
+  .explore-panel.is-changing .explore-half{opacity:.25;transform:translateY(9px)}
+  .explore-half:before{content:'◌';display:block;text-align:right;font-size:30px;line-height:1;color:#a87d3e;animation:orbitPulse 6s ease-in-out infinite}
+  .explore-half:nth-child(2):before{animation-delay:-3s}
+  @keyframes orbitPulse{0%,100%{opacity:.45;transform:rotate(0deg)}50%{opacity:1;transform:rotate(90deg)}}
+  .museum-dialog[open] {animation:artOpen .35s ease both}
+  @keyframes artOpen{from{opacity:0;transform:scale(.975)}to{opacity:1;transform:scale(1)}}
+  .gallery-card img{transition:transform .5s ease,filter .5s ease}
+  .gallery-card:hover img{transform:scale(1.025);filter:brightness(1.05)}
+}
+@media(prefers-reduced-motion:reduce){.explore-half,.gallery-card img{transition:none!important}}
+</style>
 </head><body>
 <section id="accueil" class="image-home" aria-label="Accueil Éclats de l'Absolu">
  <div class="art-board">
@@ -157,7 +177,11 @@ passages:["Un orifice biologique","Une ouverture relie deux espaces et permet de
 reseaux:["Les ramifications des neurones","Les cellules nerveuses forment des connexions dans un tissu vivant.","Les réseaux de transport","Routes et rails composent des liaisons entre des lieux éloignés."]};
 document.querySelectorAll('[data-explore]').forEach(b=>b.addEventListener('click',()=>{
 document.querySelectorAll('[data-explore]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));
-const a=explorer[b.dataset.explore];['small-title','small-text','big-title','big-text'].forEach((id,i)=>document.getElementById('explore-'+id).textContent=a[i]);
+const a=explorer[b.dataset.explore],panel=document.querySelector('.explore-panel');
+const render=()=>['small-title','small-text','big-title','big-text'].forEach((id,i)=>document.getElementById('explore-'+id).textContent=a[i]);
+if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){render()}else{
+panel.classList.add('is-changing');window.setTimeout(()=>{render();panel.classList.remove('is-changing')},170);
+}
 }));
 const museumDialog=document.getElementById('museum-dialog');
 function openMuseum(r){document.getElementById('museum-image').src=r.image_url;document.getElementById('museum-image').alt=r.titre||'Œuvre';document.getElementById('museum-title').textContent=r.titre||'Sans titre';document.getElementById('museum-desc').textContent=r.description||'';document.getElementById('museum-collection').textContent=r.collection||'';museumDialog.showModal()}
