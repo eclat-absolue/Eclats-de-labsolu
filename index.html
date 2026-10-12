@@ -16,7 +16,83 @@ html{scroll-behavior:smooth}body{background:#101b25}.image-home{background:#101b
 .inner-links .drop a{color:#f2d8a7;padding:11px;border-bottom:1px solid #b38c4b55;font:14px Georgia,serif}.inner-links .drop a:hover{background:#8a642d66}
 section[id]{scroll-margin-top:85px}
 @media(max-width:760px){.inner-nav-row{gap:9px;padding:8px 10px;min-height:60px}.inner-logo{font-size:11px}.inner-logo small{font-size:8px}.inner-links>a,.inner-links summary{font-size:10px;padding:11px 8px}.inner-links details .drop{grid-template-columns:1fr}.inner-navigation{width:100%}}
-</style></head><body>
+
+/* Mise en page centrée, accueil visible sans descendre */
+html{scroll-padding-top:76px}
+.image-home{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8px 12px;overflow:hidden}
+.art-board{width:min(100%,calc((100svh - 16px)*4/3),1448px);max-height:calc(100svh - 16px);flex:none}
+.art-board>img{width:100%;height:auto;aspect-ratio:4/3;object-fit:contain}
+.image-home .mobile-menu,.image-home .home-hint{display:none}
+main>.section{min-height:calc(100svh - 70px);display:flex;align-items:center;justify-content:center;scroll-margin-top:70px}
+main>.section>.shell{width:min(1200px,calc(100% - 40px));margin-inline:auto}
+@media(max-width:760px){
+ html{scroll-padding-top:65px}
+ .image-home{padding:6px 4px;min-height:100svh}
+ .art-board{width:min(100%,calc((100svh - 12px)*4/3));max-height:calc(100svh - 12px)}
+ main>.section{min-height:calc(100svh - 65px);scroll-margin-top:65px;padding:36px 0}
+ main>.section>.shell{width:calc(100% - 28px)}
+}
+</style>
+<style>
+/* Extensions : galerie-musée, parcours et animations */
+html{scroll-padding-top:80px}
+body{overflow-x:hidden}
+main>.section{scroll-margin-top:80px}
+.section>.shell{max-width:1200px}
+@media(prefers-reduced-motion:no-preference){
+  .section .shell{animation:arrive .65s ease both;animation-timeline:view();animation-range:entry 0% entry 22%}
+  @keyframes arrive{from{opacity:.72;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+  .museum-card:hover{transform:translateY(-5px);box-shadow:0 20px 40px #0007}
+}
+.museum-toolbar{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin:0 auto 28px}
+.museum-toolbar select,.museum-toolbar input{background:#102631;color:#f8e7c8;border:1px solid #c7a064;border-radius:5px;padding:11px 14px;max-width:100%}
+.museum-toolbar input{width:min(340px,100%)}
+.gallery{grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr))}
+.gallery-card{border:7px ridge #caa267;background:#142a36;box-shadow:0 10px 30px #0007;transition:transform .25s,box-shadow .25s;cursor:pointer}
+.gallery-card img{aspect-ratio:4/3;object-fit:contain;background:#0d1d27}
+.gallery-card .inner{border-top:1px solid #d1ac6e}
+.gallery-card:focus-visible{outline:3px solid #fff0bd}
+.museum-caption{color:#d6b982;font-size:14px;text-align:center;margin:0 0 24px}
+.museum-dialog{border:2px solid #d7b577;background:#0e202a;color:#f7e5c5;padding:16px;max-width:min(1100px,96vw);max-height:94dvh;box-shadow:0 0 0 7px #624524,0 30px 100px #000b}
+.museum-dialog::backdrop{background:#020a10e8;backdrop-filter:blur(7px)}
+.museum-dialog img{max-height:70dvh;max-width:100%;object-fit:contain;margin:auto}
+.museum-dialog .dialog-tools{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}
+.museum-dialog button,.museum-dialog a{border:1px solid #b89457;background:#203946;color:#f6d8a0;padding:7px 13px;border-radius:4px}
+.museum-dialog h3{color:#f7d99e;margin:10px 0 3px}
+.interactive-art{position:relative;margin:20px auto;max-width:1040px;border:7px ridge #caa267;box-shadow:0 12px 40px #0007}
+.interactive-art img{display:block;width:100%;height:auto}
+.art-point{position:absolute;transform:translate(-50%,-50%);width:36px;height:36px;border-radius:50%;border:2px solid #fff0ba;background:#102c3bdd;color:#ffe5a0;box-shadow:0 0 0 5px #e6b75e55;cursor:pointer;display:grid;place-items:center;font-size:20px}
+.art-point:hover,.art-point:focus-visible{background:#d3a24e;color:#071b26}
+.art-note{margin:12px auto 20px;padding:16px 20px;max-width:1040px;border:1px solid #c7a06b;background:#102832;color:#f3dfb5;min-height:76px}
+.explore-controls{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:20px auto}
+.explore-controls button{padding:10px 18px;border:1px solid #b9945b;background:#142b37;color:#f4ddac;border-radius:24px}
+.explore-controls button[aria-pressed=true]{background:#e5bf7e;color:#182a30}
+.explore-panel{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:stretch;max-width:1040px;margin:0 auto}
+.explore-half{border:2px solid #b9945b;padding:20px;background:#f2e1b8;color:#24343a;min-height:190px}
+.explore-half h3{color:#765026}
+.explore-label{font:12px Cinzel,serif;letter-spacing:.15em;color:#95682d}
+.explore-hint{text-align:center;color:#d6b982}
+@media(max-width:650px){.explore-panel{grid-template-columns:1fr}.art-point{width:30px;height:30px}.museum-dialog img{max-height:60dvh}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+</style>
+<style>
+/* Images sans encadrement : l'illustration reste au premier plan */
+.gallery-card,.interactive-art,.art-board{border:0!important;box-shadow:none!important;background:transparent!important;border-radius:0!important}
+.gallery-card img,.interactive-art img{border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important}
+.gallery-card .inner{border:0!important;background:transparent!important}
+.gallery-card:hover{box-shadow:none!important}
+.museum-dialog{border:0!important;box-shadow:none!important;border-radius:0!important}
+.museum-dialog img{border:0!important;box-shadow:none!important}
+</style><style>
+/* Accueil restauré : présentation originale, sans centrage vertical forcé. */
+.image-home{min-height:0!important;display:block!important;padding:clamp(8px,1.2vw,20px) 8px 10px!important;overflow:visible!important;text-align:center}
+.image-home .art-board{width:min(1448px,100%)!important;max-height:none!important;margin:0 auto!important;flex:none}
+.image-home .art-board>img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:contain}
+.image-home .mobile-menu{display:flex!important}
+.image-home .home-hint{display:block!important}
+@media(max-width:600px){.image-home{padding:0 0 10px!important}.image-home .art-board{width:100%!important}}
+</style>
+</head><body>
 <section id="accueil" class="image-home" aria-label="Accueil Éclats de l'Absolu">
  <div class="art-board">
   <img src="./accueil-eclats.png" alt="Éclats de l'Absolu : fresque cosmique sur parchemin, avec nature, galaxies, œil, aigle et menu illustré" fetchpriority="high">
@@ -35,7 +111,7 @@ section[id]{scroll-margin-top:85px}
    <a href="#spheres" style="--x:84%;--y:39%;--w:14%;--h:20%" aria-label="Explorer les six sphères"></a>
   </nav>
  </div>
- <nav class="mobile-menu" aria-label="Navigation rapide"><a href="#spheres">Sphères</a><a href="#correspondances">Micro ↔ Méga</a><a href="#organik">Organik ↔ Mékanik</a><a href="#images">Images</a><a href="#textes">Textes</a><a href="#experiences">Expériences</a></nav>
+ <nav class="mobile-menu" aria-label="Navigation rapide"><a href="#spheres">Sphères</a><a href="#correspondances">Micro ↔ Méga</a><a href="#organik">Organik ↔ Mékanik</a><a href="#oeuvres-interactives">Œuvres interactives</a><a href="#explorateur">Explorateur</a><a href="#images">Images</a><a href="#textes">Textes</a><a href="#experiences">Expériences</a></nav>
  <p class="home-hint">Touchez les éléments de la fresque pour explorer l'œuvre ↓</p>
 </section>
 <header class="inner-navigation" id="inner-navigation" aria-label="Navigation des sections">
@@ -43,19 +119,36 @@ section[id]{scroll-margin-top:85px}
  <nav class="inner-links" aria-label="Menu flottant permanent">
  <a href="#accueil">⌂ Accueil</a>
  <details id="spheres-dropdown"><summary>Les Sphères ▾</summary><div class="drop"><a href="#spheres">Les six sphères</a><a href="#spheres">Origines</a><a href="#spheres">Formes</a><a href="#spheres">Transformations</a><a href="#correspondances">Correspondances</a><a href="#passage">Le Passage</a><a href="#organik">Les Deux Miroirs</a></div></details>
- <a href="#correspondances">Correspondances</a><a href="#organik">Organik / Mékanik</a><a href="#passage">Le Passage</a><a href="#images">Images</a><a href="#textes">Textes</a><a href="#experiences">Expériences</a><a href="#communaute">Communauté</a><a href="#apropos">À propos</a>
+ <a href="#correspondances">Correspondances</a><a href="#organik">Organik / Mékanik</a><a href="#passage">Le Passage</a><a href="#oeuvres-interactives">Œuvres interactives</a><a href="#explorateur">Explorateur</a><a href="#images">Images</a><a href="#textes">Textes</a><a href="#experiences">Expériences</a><a href="#communaute">Communauté</a><a href="#apropos">À propos</a>
  </nav></div></header>
 <script>const innerNav=document.getElementById('inner-navigation');const dd=document.getElementById('spheres-dropdown');function positionDropdown(){innerNav.style.setProperty('--menu-bottom',innerNav.getBoundingClientRect().bottom+'px')}window.addEventListener('resize',positionDropdown);window.addEventListener('scroll',positionDropdown,{passive:true});dd.addEventListener('toggle',positionDropdown);document.querySelectorAll('.inner-links a').forEach(a=>a.addEventListener('click',()=>{dd.open=false}));document.addEventListener('click',e=>{if(!dd.contains(e.target))dd.open=false});positionDropdown();</script>
 <main><section id="spheres" class="section light"><div class="shell"><div class="sectionhead"><div class="eyebrow">Les mondes de l'œuvre</div><h2>Explorer les six sphères</h2><p class="intro">Six portes d'entrée pour parcourir les formes, les métamorphoses et les correspondances de la Mythologie Cosmik.</p></div><div class="tilegrid"><article class="tile"><span class="num">SPHÈRE I</span><h3>Origines</h3><p>Les premières formes, les commencements et la question de l'unité.</p><a href="#textes">Lire →</a></article><article class="tile"><span class="num">SPHÈRE II</span><h3>Formes</h3><p>Les motifs qui traversent les règnes et les échelles du vivant.</p><a href="#correspondances">Comparer →</a></article><article class="tile"><span class="num">SPHÈRE III</span><h3>Transformations</h3><p>Du végétal à la machine, des cycles aux métamorphoses.</p><a href="#organik">Explorer →</a></article><article class="tile"><span class="num">SPHÈRE IV</span><h3>Correspondances</h3><p>Des rapprochements sensibles entre le micro et le méga.</p><a href="#correspondances">Observer →</a></article><article class="tile"><span class="num">SPHÈRE V</span><h3>Le Passage</h3><p>Les seuils, les frontières et les changements de perspective.</p><a href="#experiences">Traverser →</a></article><article class="tile"><span class="num">SPHÈRE VI</span><h3>Les Deux Miroirs</h3><p>Deux regards sur une même architecture imaginaire.</p><a href="#organik">Découvrir →</a></article></div></div></section>
 <section id="correspondances" class="section dark"><div class="shell split"><div><div class="eyebrow">Correspondances</div><h2>Du MICRO au MÉGA</h2><p class="intro">Une invitation à observer des ressemblances de forme sans confondre analogie artistique et explication scientifique.</p><div class="comparison" role="tablist" aria-label="Correspondances"><button class="tab" role="tab" aria-selected="true" data-topic="0">Ramifications</button><button class="tab" role="tab" aria-selected="false" data-topic="1">Spirales</button><button class="tab" role="tab" aria-selected="false" data-topic="2">Réseaux</button></div><div class="comparebox" id="comparebox" aria-live="polite"><strong>Ramifications</strong><p>Une branche, une veine, un fleuve : des formes qui invitent à changer d'échelle et de regard.</p></div></div><div class="medallion"><div><strong>MICRO<br>✦<br>MÉGA</strong><small>Observer • Comparer • Questionner</small></div></div></div></section>
 <section id="organik" class="section light"><div class="shell split"><div class="medallion" style="background:radial-gradient(circle,#e4d1a5,#698079 60%,#233b3f);border-color:#956a38"><div><strong style="color:#f9e6b8">ORGANIK<br>↔<br>MÉCANIK</strong><small>La forme en mouvement</small></div></div><div><div class="eyebrow">Métamorphoses</div><h2>ORGANIK ↔ MÉCANIK</h2><p class="intro">L'œuvre rapproche les textures du vivant et les architectures de la technique. Les ailes deviennent mécanismes, les nervures deviennent réseaux, et chaque forme suggère une nouvelle lecture.</p><a class="btn" href="#images">Voir les créations →</a></div></div></section>
-<section id="images" class="section dark"><div class="shell"><div class="sectionhead"><div class="eyebrow">Galerie vivante</div><h2>Images & collections</h2><p class="intro">Les créations ajoutées dans l'administration apparaissent ici automatiquement depuis Supabase.</p></div><div id="gallery" class="gallery"><div class="empty">Chargement des créations…</div></div><p id="gallery-status" aria-live="polite" style="text-align:center;color:#d6bd93"></p></div></section>
+<section id="oeuvres-interactives" class="section dark"><div class="shell"><div class="sectionhead"><div class="eyebrow">Atlas vivant</div><h2>Les illustrations à explorer</h2><p class="intro">Touchez les étoiles dorées sur les planches pour découvrir leurs détails et leurs correspondances.</p></div>
+<div class="interactive-art"><img src="morphologie-passage.webp" alt="Planche illustrée : morphologie d'un passage, du micro au méga" loading="lazy">
+<button class="art-point" style="left:49%;top:25%" data-note="passage" aria-label="Découvrir les étapes du passage">✦</button>
+<button class="art-point" style="left:83%;top:22%" data-note="echelles" aria-label="Découvrir les différentes échelles">✦</button>
+<button class="art-point" style="left:52%;top:83%" data-note="cosmos" aria-label="Découvrir la morphologie cosmique">✦</button></div>
+<div id="art-note" class="art-note" aria-live="polite">✧ Choisissez une étoile dorée pour ouvrir une lecture de l'illustration.</div>
+<div class="interactive-art"><img src="poufff.webp" alt="Illustration POUFFF : du micro au méga avec un robot et un chat" loading="lazy">
+<button class="art-point" style="left:45%;top:14%" data-note="trajectoire" aria-label="Explorer la trajectoire">✦</button>
+<button class="art-point" style="left:16%;top:39%" data-note="domaines" aria-label="Explorer les domaines">✦</button></div>
+</div></section>
+<section id="explorateur" class="section dark"><div class="shell"><div class="sectionhead"><div class="eyebrow">Laboratoire poétique</div><h2>Explorateur MICRO ↔ MÉGA</h2><p class="intro">Une même silhouette peut évoquer des réalités très différentes. Changez de motif pour comparer les échelles.</p></div>
+<div class="explore-controls" role="group" aria-label="Choisir une correspondance">
+<button data-explore="ramifications" aria-pressed="true">Ramifications</button>
+<button data-explore="spirales" aria-pressed="false">Spirales</button>
+<button data-explore="passages" aria-pressed="false">Passages</button>
+<button data-explore="reseaux" aria-pressed="false">Réseaux</button></div>
+<div class="explore-panel"><article class="explore-half"><span class="explore-label">MICRO / ORGANIK</span><h3 id="explore-small-title">Les nervures d'une feuille</h3><p id="explore-small-text">Un dessin ramifié distribue l'eau et les ressources dans le vivant.</p></article><article class="explore-half"><span class="explore-label">MÉGA / COSMIK</span><h3 id="explore-big-title">Le réseau d'un fleuve</h3><p id="explore-big-text">À grande échelle, des cours d'eau peuvent présenter des bifurcations visuellement comparables.</p></article></div>
+<p class="explore-hint">Ces rapprochements sont artistiques : une ressemblance visuelle ne prouve pas une cause commune.</p></div></section><section id="images" class="section dark"><div class="shell"><div class="sectionhead"><div class="eyebrow">Galerie vivante</div><h2>Images & collections</h2><p class="intro">Les créations ajoutées dans l'administration apparaissent ici automatiquement depuis Supabase.</p></div><div class="museum-toolbar"><label class="sr" for="museum-filter">Collection</label><select id="museum-filter"><option value="">Toutes les collections</option></select><label class="sr" for="museum-search">Rechercher</label><input id="museum-search" type="search" placeholder="Rechercher une œuvre…"></div><p class="museum-caption">Sélectionne une œuvre pour l'observer en grand, comme dans un musée.</p><div id="gallery" class="gallery"><div class="empty">Chargement des créations…</div></div><p id="gallery-status" aria-live="polite" style="text-align:center;color:#d6bd93"></p></div></section>
 <section id="textes" class="section light"><div class="shell"><div class="sectionhead"><div class="eyebrow">Fragments de pensée</div><h2>Textes & réflexions</h2></div><div class="reading"><blockquote>« De l'infiniment petit à l'immensément grand, les formes se répondent. Ce ne sont pas des preuves, mais des invitations à regarder autrement. »</blockquote><p>ÉCLATS DE L’ABSOLU est une œuvre de regard, de passage et de question. Elle explore les correspondances comme un langage artistique, poétique et symbolique.</p><p class="signature">— Vegan Stratégik</p></div></div></section>
 <section id="experiences" class="section dark"><div class="shell"><div class="sectionhead"><div class="eyebrow">Œuvre vivante</div><h2>Expériences interactives</h2><p class="intro">Un premier espace pour laisser l'œuvre ouvrir des questions. D'autres expériences pourront s'ajouter progressivement.</p></div><div class="experience"><div class="eyebrow">Une question pour traverser</div><p id="prompt">Quelle forme du vivant te rappelle un paysage cosmique ?</p><button class="btn" id="next-question">Une autre question ↻</button></div></div></section><section id="passage" class="section light"><div class="shell"><div class="sectionhead"><div class="eyebrow">Sphère V</div><h2>Le Passage</h2><p class="intro">Un seuil entre deux perceptions. Observer un détail, changer d'échelle, revenir à l'ensemble : l'œuvre se découvre par traversées successives.</p></div><div class="buttons"><a class="btn" href="#experiences">Traverser par une question →</a></div></div></section>
 <section id="communaute" class="section dark"><div class="shell"><div class="sectionhead"><div class="eyebrow">Œuvre en devenir</div><h2>Communauté</h2><p class="intro">Un espace destiné aux échanges et aux regards des visiteurs. Les contributions publiques seront ajoutées dans une prochaine étape.</p></div></div></section>
 <section id="apropos" class="section light"><div class="shell"><div class="sectionhead"><div class="eyebrow">L'univers de l'œuvre</div><h2>À propos</h2><p class="intro">ÉCLATS DE L’ABSOLU — Vegan Stratégik. Vision Kafu — Mythologie Cosmik. Une œuvre vivante où l'on explore, compare, ressent et questionne les formes du micro au méga.</p></div></div></section>
 </main>
-<footer class="foot"><div style="font:22px Cinzel">✧ ÉCLATS DE L’ABSOLU ✧</div><p>VISION KAFU — MYTHOLOGIE COSMIK</p><p>Vegan Stratégik</p><small>Une œuvre artistique et symbolique, non une théorie scientifique.</small><a class="footerlink" href="./admini.html">Administration</a></footer>
+<dialog class="museum-dialog" id="museum-dialog" aria-label="Œuvre agrandie"><div class="dialog-tools"><span>✧ Galerie des œuvres</span><button id="museum-close" type="button" aria-label="Fermer">✕ Fermer</button></div><img id="museum-image" alt=""><h3 id="museum-title"></h3><p id="museum-desc"></p><p id="museum-collection" class="eyebrow"></p></dialog><footer class="foot"><div style="font:22px Cinzel">✧ ÉCLATS DE L’ABSOLU ✧</div><p>VISION KAFU — MYTHOLOGIE COSMIK</p><p>Vegan Stratégik</p><small>Une œuvre artistique et symbolique, non une théorie scientifique.</small><a class="footerlink" href="./admini.html">Administration</a></footer>
 <script>
 const topics=[['Ramifications','Une branche, une veine, un fleuve : des formes qui invitent à changer d’échelle et de regard.'],['Spirales','De la coquille à la galaxie : une ressemblance visuelle, sans supposer une origine identique.'],['Réseaux','Des liens entre cellules, racines et constellations imaginaires : une exploration artistique des connexions.']];
 document.querySelectorAll('[data-topic]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('[data-topic]').forEach(x=>x.setAttribute('aria-selected',String(x===b)));const [t,d]=topics[Number(b.dataset.topic)];document.getElementById('comparebox').replaceChildren();const s=document.createElement('strong'),p=document.createElement('p');s.textContent=t;p.textContent=d;document.getElementById('comparebox').append(s,p)}));
@@ -65,5 +158,33 @@ const questions=['Quelle forme du vivant te rappelle un paysage cosmique ?','Que
 import {createClient} from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
 const db=createClient('https://jvhxhgwswcauunhstkpm.supabase.co','sb_publishable_a9WBw9-Xx5bT9Gi9c9O6gg_w_HFVkKL');
 const gallery=document.getElementById('gallery'),status=document.getElementById('gallery-status');
-try{const {data,error}=await db.from('collections_images').select('id,collection,titre,description,image_url,ordre,created_at').order('ordre',{ascending:true}).order('created_at',{ascending:true});if(error)throw error;gallery.replaceChildren();if(!data?.length){const d=document.createElement('div');d.className='empty';d.textContent='Les premières images seront bientôt exposées ici.';gallery.append(d)}else{for(const r of data){const card=document.createElement('article');card.className='gallery-card';const im=document.createElement('img');im.src=r.image_url;im.alt=r.titre;im.loading='lazy';const inner=document.createElement('div');inner.className='inner';const tag=document.createElement('div');tag.className='eyebrow';tag.textContent=r.collection;const title=document.createElement('h3');title.textContent=r.titre;const desc=document.createElement('p');desc.textContent=r.description||'';inner.append(tag,title,desc);card.append(im,inner);gallery.append(card)}status.textContent=data.length+' image(s) dans la galerie.'}}catch(e){gallery.replaceChildren();const d=document.createElement('div');d.className='empty';d.textContent='La galerie est momentanément indisponible. Le reste du site reste accessible.';gallery.append(d);console.warn(e)}
+try{const {data,error}=await db.from('collections_images').select('id,collection,titre,description,image_url,ordre,created_at').order('ordre',{ascending:true}).order('created_at',{ascending:true});if(error)throw error;gallery.replaceChildren();if(!data?.length){const d=document.createElement('div');d.className='empty';d.textContent='Les premières images seront bientôt exposées ici.';gallery.append(d)}else{for(const r of data){const card=document.createElement('article');card.className='gallery-card';card.tabIndex=0;card.setAttribute('role','button');card.setAttribute('aria-label','Agrandir : '+r.titre);card.dataset.collection=r.collection||'';card.dataset.search=((r.titre||'')+' '+(r.description||'')).toLowerCase();card.addEventListener('click',()=>openMuseum(r));card.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openMuseum(r)}});const im=document.createElement('img');im.src=r.image_url;im.alt=r.titre;im.loading='lazy';const inner=document.createElement('div');inner.className='inner';const tag=document.createElement('div');tag.className='eyebrow';tag.textContent=r.collection;const title=document.createElement('h3');title.textContent=r.titre;const desc=document.createElement('p');desc.textContent=r.description||'';inner.append(tag,title,desc);card.append(im,inner);gallery.append(card)}status.textContent=data.length+' image(s) dans la galerie.';setupMuseumFilters()}}catch(e){gallery.replaceChildren();const d=document.createElement('div');d.className='empty';d.textContent='La galerie est momentanément indisponible. Le reste du site reste accessible.';gallery.append(d);console.warn(e)}
+</script><script>
+const artNotes={
+passage:"Ouverture → contraction → canalisation → transformation → sortie : une lecture en cinq mouvements du passage.",
+echelles:"Atome, cellule, orifice biologique, volcan, tourbillon, trou noir : l'œuvre rapproche des formes, sans les déclarer scientifiquement équivalentes.",
+cosmos:"Le passage cosmique est une métaphore visuelle des seuils et des transformations.",
+trajectoire:"Source → émission → trajectoire → transformation → accumulation ou sortie : suivez le parcours de POUFFF.",
+domaines:"ATOMIK, ORGANIK, MÉKANIK, COSMIK : quatre manières de changer d'échelle et de point de vue."};
+document.querySelectorAll('[data-note]').forEach(b=>b.addEventListener('click',()=>{document.getElementById('art-note').textContent=artNotes[b.dataset.note]}));
+const explorer={
+ramifications:["Les nervures d'une feuille","Un dessin ramifié distribue l'eau et les ressources dans le vivant.","Le réseau d'un fleuve","À grande échelle, des cours d'eau peuvent présenter des bifurcations visuellement comparables."],
+spirales:["La coquille d'un mollusque","Une croissance progressive peut dessiner une spirale.","Une galaxie spirale","La répartition des étoiles et du gaz produit parfois une silhouette spiralée."],
+passages:["Un orifice biologique","Une ouverture relie deux espaces et permet des échanges.","Un tunnel ou un passage","Une architecture canalise les déplacements à une tout autre échelle."],
+reseaux:["Les ramifications des neurones","Les cellules nerveuses forment des connexions dans un tissu vivant.","Les réseaux de transport","Routes et rails composent des liaisons entre des lieux éloignés."]};
+document.querySelectorAll('[data-explore]').forEach(b=>b.addEventListener('click',()=>{
+document.querySelectorAll('[data-explore]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));
+const a=explorer[b.dataset.explore];['small-title','small-text','big-title','big-text'].forEach((id,i)=>document.getElementById('explore-'+id).textContent=a[i]);
+}));
+const museumDialog=document.getElementById('museum-dialog');
+function openMuseum(r){document.getElementById('museum-image').src=r.image_url;document.getElementById('museum-image').alt=r.titre||'Œuvre';document.getElementById('museum-title').textContent=r.titre||'Sans titre';document.getElementById('museum-desc').textContent=r.description||'';document.getElementById('museum-collection').textContent=r.collection||'';museumDialog.showModal()}
+document.getElementById('museum-close').addEventListener('click',()=>museumDialog.close());
+museumDialog.addEventListener('click',e=>{if(e.target===museumDialog)museumDialog.close()});
+function setupMuseumFilters(){
+const cards=[...document.querySelectorAll('#gallery .gallery-card')];
+const select=document.getElementById('museum-filter'),search=document.getElementById('museum-search');
+[...new Set(cards.map(x=>x.dataset.collection).filter(Boolean))].sort().forEach(c=>{const o=document.createElement('option');o.value=c;o.textContent=c;select.append(o)});
+const update=()=>{let visible=0;for(const c of cards){const ok=(!select.value||c.dataset.collection===select.value)&&c.dataset.search.includes(search.value.toLowerCase().trim());c.hidden=!ok;if(ok)visible++}document.getElementById('gallery-status').textContent=visible+' œuvre(s) affichée(s).'};
+select.addEventListener('change',update);search.addEventListener('input',update);
+}
 </script></body></html>
