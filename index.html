@@ -119,24 +119,39 @@ main>.section{scroll-margin-top:80px}
 @keyframes portal-zoom{to{transform:scale(3);opacity:0}}
 @media(prefers-reduced-motion:reduce){.home-sparkle,.portal-transition *{animation:none!important}.portal-transition{transition:none}}
 </style>
+<style id="eclats-real-menu-css">
+/* Vrais liens superposés à la fresque : le décor n'est pas recadré. */
+.image-home .home-real-menu{position:absolute;z-index:8;left:1.25%;top:22.4%;width:16.15%;height:55.6%;display:flex;flex-direction:column;padding:.35% .3%;border:2px solid #996021;border-radius:clamp(8px,1.6vw,24px);background:linear-gradient(105deg,#f6dba4 0%,#ffe6b6 42%,#e9bb77 100%);box-shadow:inset 0 0 0 2px #fce6b6,inset 0 0 17px #9e663e99,0 4px 8px #39210b88;overflow:hidden}
+.image-home .home-real-link{flex:1;min-height:0;display:flex;align-items:center;gap:5%;padding:0 5%;color:#35200e;text-decoration:none;font-family:Georgia,serif;font-size:clamp(7px,1.45vw,21px);line-height:1.08;border-bottom:1px solid #a57a4477;transition:background .25s,color .25s,transform .25s,text-shadow .25s;position:relative}
+.image-home .home-real-link:last-child{border-bottom:0}
+.image-home .home-real-link:hover,.image-home .home-real-link:focus-visible{background:linear-gradient(90deg,#143b58,#0b263d);color:#ffe2a5;text-shadow:0 0 8px #ffe4a699;transform:translateX(2px);outline:1px solid #e5b763;z-index:1}
+.image-home .menu-glyph{font-family:Georgia,serif;font-size:clamp(10px,2.2vw,32px);width:23%;flex:none;text-align:center;color:#0d526d}
+.image-home .home-real-link:hover .menu-glyph,.image-home .home-real-link:focus-visible .menu-glyph{color:#f5c96d}
+.image-home .home-real-enter{position:absolute;z-index:9;left:41.6%;top:82.8%;width:16.7%;height:7.2%;display:flex;justify-content:center;align-items:center;gap:8%;border-radius:40px;border:2px solid #d3a35d;background:linear-gradient(145deg,#0c4560,#05253c);box-shadow:inset 0 0 0 2px #092b43,0 0 10px #2a1d11;color:#ffe0a5;text-decoration:none;font-family:Georgia,serif;font-size:clamp(10px,2.1vw,29px);letter-spacing:.02em;transition:transform .3s,box-shadow .3s,filter .3s}
+.image-home .home-real-enter:hover,.image-home .home-real-enter:focus-visible{transform:scale(1.07);filter:brightness(1.2);box-shadow:0 0 30px #e7b85a;outline:2px solid #ffe6b0}
+.image-home .home-real-spheres{position:absolute;z-index:7;left:84%;top:39%;width:14%;height:20%;border-radius:6px}
+.image-home .home-real-spheres:hover,.image-home .home-real-spheres:focus-visible{outline:2px solid #e7bc73;background:#ffe0a31f}
+@media(max-width:600px){.image-home .home-real-menu{border-width:1px;border-radius:5px;padding:0}.image-home .home-real-link{font-size:clamp(5px,1.42vw,10px);padding:0 2%;gap:2%}.image-home .menu-glyph{font-size:clamp(7px,2.3vw,14px)}.image-home .home-real-enter{border-width:1px;font-size:clamp(7px,2vw,12px)}}
+@media(prefers-reduced-motion:reduce){.image-home .home-real-link,.image-home .home-real-enter{transition:none!important}}
+</style>
 </head><body>
 <section id="accueil" class="image-home" aria-label="Accueil Éclats de l'Absolu">
  <div class="art-board">
   <img src="./accueil-eclats.png" alt="Éclats de l'Absolu : fresque cosmique sur parchemin, avec nature, galaxies, œil, aigle et menu illustré" fetchpriority="high">
-  <nav class="image-hotspots" aria-label="Menu illustré de l'œuvre">
-   <a href="#accueil" style="--x:2%;--y:23%;--w:15%;--h:5%" aria-label="Accueil"></a>
-   <a href="#spheres" style="--x:2%;--y:29%;--w:15%;--h:5%" aria-label="Sphères"></a>
-   <a href="#correspondances" style="--x:2%;--y:34%;--w:15%;--h:5%" aria-label="Correspondances"></a>
-   <a href="#organik" style="--x:2%;--y:39%;--w:15%;--h:5%" aria-label="Organik Mécanik"></a>
-   <a href="#passage" style="--x:2%;--y:44%;--w:15%;--h:5%" aria-label="Le Passage"></a>
-   <a href="#images" style="--x:2%;--y:49%;--w:15%;--h:5%" aria-label="Images"></a>
-   <a href="#textes" style="--x:2%;--y:54%;--w:15%;--h:5%" aria-label="Textes"></a>
-   <a href="#experiences" style="--x:2%;--y:59%;--w:15%;--h:5%" aria-label="Expériences"></a>
-   <a href="#communaute" style="--x:2%;--y:64%;--w:15%;--h:5%" aria-label="Communauté"></a>
-   <a href="#apropos" style="--x:2%;--y:69%;--w:15%;--h:5%" aria-label="À propos"></a>
-   <a href="#spheres" style="--x:41%;--y:80%;--w:18%;--h:8%" aria-label="Entrer dans l'œuvre"></a>
-   <a href="#spheres" style="--x:84%;--y:39%;--w:14%;--h:20%" aria-label="Explorer les six sphères"></a>
+  <nav class="home-real-menu" aria-label="Menu principal interactif">
+   <a href="#accueil" class="home-real-link"><span class="menu-glyph" aria-hidden="true">⌂</span><span>Accueil</span></a>
+   <a href="#spheres" class="home-real-link"><span class="menu-glyph" aria-hidden="true">✺</span><span>Sphères</span></a>
+   <a href="#correspondances" class="home-real-link"><span class="menu-glyph" aria-hidden="true">✧</span><span>Correspondances</span></a>
+   <a href="#organik" class="home-real-link"><span class="menu-glyph" aria-hidden="true">☯</span><span>Organik / Mékanik</span></a>
+   <a href="#passage" class="home-real-link"><span class="menu-glyph" aria-hidden="true">△</span><span>Le Passage</span></a>
+   <a href="#images" class="home-real-link"><span class="menu-glyph" aria-hidden="true">▧</span><span>Images</span></a>
+   <a href="#textes" class="home-real-link"><span class="menu-glyph" aria-hidden="true">▤</span><span>Textes</span></a>
+   <a href="#experiences" class="home-real-link"><span class="menu-glyph" aria-hidden="true">⚛</span><span>Expériences</span></a>
+   <a href="#communaute" class="home-real-link"><span class="menu-glyph" aria-hidden="true">♧</span><span>Communauté</span></a>
+   <a href="#apropos" class="home-real-link"><span class="menu-glyph" aria-hidden="true">❧</span><span>À propos</span></a>
   </nav>
+  <a class="home-real-enter" href="#spheres" aria-label="Entrer dans les Sphères"><span aria-hidden="true">✦</span> ENTRER</a>
+  <a class="home-real-spheres" href="#spheres" aria-label="Explorer les six Sphères"></a>
  </div>
  <nav class="mobile-menu" aria-label="Navigation rapide"><a href="#spheres">Sphères</a><a href="#correspondances">Micro ↔ Méga</a><a href="#organik">Organik ↔ Mékanik</a><a href="#oeuvres-interactives">Œuvres interactives</a><a href="#explorateur">Explorateur</a><a href="#images">Images</a><a href="#textes">Textes</a><a href="#experiences">Expériences</a></nav>
  <p class="home-hint">Touchez les éléments de la fresque pour explorer l'œuvre ↓</p>
@@ -214,26 +229,15 @@ const select=document.getElementById('museum-filter'),search=document.getElement
 const update=()=>{let visible=0;for(const c of cards){const ok=(!select.value||c.dataset.collection===select.value)&&c.dataset.search.includes(search.value.toLowerCase().trim());c.hidden=!ok;if(ok)visible++}document.getElementById('gallery-status').textContent=visible+' œuvre(s) affichée(s).'};
 select.addEventListener('change',update);search.addEventListener('input',update);
 }
-</script><script id="eclats-animated-home-js">
+</script><script id="eclats-real-menu-js">
 (()=>{
-const home=document.querySelector('#accueil'),board=home?.querySelector('.art-board'),links=home?.querySelectorAll('.image-hotspots a');
-if(!board||!links?.length)return;
-// Les intitulés sont déjà présents sur la fresque : on conserve les zones cliquables sans doublons.
-const positions=[[19,18],[26,13],[79,21],[67,10],[89,68],[35,76],[74,82],[55,29],[92,38],[43,16],[62,71],[12,83]];
-positions.forEach(([x,y],i)=>{const star=document.createElement('span');star.className='home-sparkle';star.style.left=x+'%';star.style.top=y+'%';star.style.animationDelay=(i*.37)+'s';board.append(star)});
-const portal=document.createElement('div');portal.className='portal-transition';portal.setAttribute('aria-hidden','true');portal.innerHTML='<div class="portal-stars"></div><div class="portal-rings"><div class="portal-ring"></div><div class="portal-ring"></div><div class="portal-ring"></div><div class="portal-core"></div></div><div class="portal-word">ÉCLATS DE L’ABSOLU</div><button class="portal-skip" type="button">Passer l’animation →</button>';
-document.body.append(portal);
-let timer=null,target=null;
-function finish(){if(timer)clearTimeout(timer);portal.classList.remove('is-active');portal.setAttribute('aria-hidden','true');document.body.style.overflow='';if(target){const dest=target;target=null;document.querySelector(dest)?.scrollIntoView({behavior:'auto'});if(location.hash!==dest)history.pushState(null,'',dest)}}
-portal.querySelector('.portal-skip').addEventListener('click',finish);
-links.forEach(link=>{
- link.title=link.getAttribute('aria-label')||'';
- if(link.getAttribute('aria-label')==='Entrer dans l’œuvre'||link.getAttribute('aria-label')==='Entrer dans l'œuvre'){
-   link.dataset.portalTrigger='';
-   link.addEventListener('click',event=>{event.preventDefault();if(portal.classList.contains('is-active'))return;target=link.getAttribute('href')||'#spheres';portal.classList.add('is-active');portal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';timer=setTimeout(finish,2050)});
- }
-});
-window.addEventListener('keydown',event=>{if(event.key==='Escape'&&portal.classList.contains('is-active'))finish()});
+ const board=document.querySelector('#accueil .art-board');if(!board)return;
+ const portal=document.createElement('div');portal.className='portal-transition';portal.setAttribute('aria-hidden','true');portal.innerHTML='<div class="portal-stars"></div><div class="portal-rings"><div class="portal-ring"></div><div class="portal-ring"></div><div class="portal-ring"></div><div class="portal-core"></div></div><div class="portal-word">ÉCLATS DE L’ABSOLU</div><button class="portal-skip" type="button">Passer l’animation →</button>';
+ document.body.append(portal);let timer=null;
+ function finish(){clearTimeout(timer);portal.classList.remove('is-active');portal.setAttribute('aria-hidden','true');document.body.style.overflow='';document.querySelector('#spheres')?.scrollIntoView({behavior:'auto'});history.pushState(null,'','#spheres')}
+ portal.querySelector('.portal-skip').addEventListener('click',finish);
+ board.querySelector('.home-real-enter').addEventListener('click',e=>{e.preventDefault();if(portal.classList.contains('is-active'))return;portal.classList.add('is-active');portal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';timer=setTimeout(finish,2200)});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&portal.classList.contains('is-active'))finish()});
 })();
 </script>
 </body></html>
