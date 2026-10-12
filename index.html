@@ -16,22 +16,6 @@ html{scroll-behavior:smooth}body{background:#101b25}.image-home{background:#101b
 .inner-links .drop a{color:#f2d8a7;padding:11px;border-bottom:1px solid #b38c4b55;font:14px Georgia,serif}.inner-links .drop a:hover{background:#8a642d66}
 section[id]{scroll-margin-top:85px}
 @media(max-width:760px){.inner-nav-row{gap:9px;padding:8px 10px;min-height:60px}.inner-logo{font-size:11px}.inner-logo small{font-size:8px}.inner-links>a,.inner-links summary{font-size:10px;padding:11px 8px}.inner-links details .drop{grid-template-columns:1fr}.inner-navigation{width:100%}}
-
-/* Mise en page centrée, accueil visible sans descendre */
-html{scroll-padding-top:76px}
-.image-home{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8px 12px;overflow:hidden}
-.art-board{width:min(100%,calc((100svh - 16px)*4/3),1448px);max-height:calc(100svh - 16px);flex:none}
-.art-board>img{width:100%;height:auto;aspect-ratio:4/3;object-fit:contain}
-.image-home .mobile-menu,.image-home .home-hint{display:none}
-main>.section{min-height:calc(100svh - 70px);display:flex;align-items:center;justify-content:center;scroll-margin-top:70px}
-main>.section>.shell{width:min(1200px,calc(100% - 40px));margin-inline:auto}
-@media(max-width:760px){
- html{scroll-padding-top:65px}
- .image-home{padding:6px 4px;min-height:100svh}
- .art-board{width:min(100%,calc((100svh - 12px)*4/3));max-height:calc(100svh - 12px)}
- main>.section{min-height:calc(100svh - 65px);scroll-margin-top:65px;padding:36px 0}
- main>.section>.shell{width:calc(100% - 28px)}
-}
 </style></head><body>
 <section id="accueil" class="image-home" aria-label="Accueil Éclats de l'Absolu">
  <div class="art-board">
