@@ -228,6 +228,13 @@ main>.section{scroll-margin-top:80px}
  .portal-transition .portal-rings{filter:none}
  .portal-transition .portal-veil{background:radial-gradient(circle,transparent 0%,#02071088 100%)}
 }
+</style><style id="eclats-crossfade-style">
+/* Transition en deux temps : fondu vers une lueur, changement de page caché,
+   puis révélation progressive de la destination. */
+.eclats-crossfade{position:fixed;inset:0;z-index:100001;pointer-events:none;opacity:0;visibility:hidden;background:radial-gradient(ellipse at 50% 44%,#fff5d9 0%,#edcf99 22%,#8d775e 57%,#142634 100%);transition:opacity 650ms ease,visibility 0s linear 650ms;will-change:opacity}
+.eclats-crossfade.is-visible{opacity:1;visibility:visible;transition:opacity 650ms ease,visibility 0s}
+.eclats-crossfade.is-revealing{opacity:0;visibility:visible;transition:opacity 1050ms cubic-bezier(.16,.6,.3,1),visibility 0s linear 1050ms}
+@media(prefers-reduced-motion:reduce){.eclats-crossfade{transition-duration:120ms!important}}
 </style><style id="eclats-portal-v3-style">
 /* GPU tunnel + transform-only 3D brass astrolabe; old cinematic layers disabled. */
 .portal-transition.portal-v3{position:fixed;inset:0;z-index:99999;overflow:hidden;display:block;visibility:hidden;opacity:0;background:#061522;transition:none;pointer-events:none;perspective:900px}
@@ -374,6 +381,10 @@ portal.innerHTML=`<canvas class="portal-canvas" aria-hidden="true"></canvas>
 <div class="portal-v3-whiteout" aria-hidden="true"></div>
 <button type="button" class="portal-skip">Passer l’animation →</button>`;
 document.body.append(portal);
+const crossfade=document.createElement('div');crossfade.className='eclats-crossfade';crossfade.setAttribute('aria-hidden','true');document.body.append(crossfade);
+let fadeTimer=0,revealTimer=0,transitioning=false;
+function clearFade(){clearTimeout(fadeTimer);clearTimeout(revealTimer);crossfade.classList.remove('is-visible','is-revealing');transitioning=false}
+
 const canvas=portal.querySelector('canvas');
 const mobile=matchMedia('(max-width: 700px), (pointer: coarse)').matches;
 let gl=null,program=null,uniforms=null,frame=0,start=0,timer=0,active=false,oldOverflow='';
@@ -460,13 +471,26 @@ function render(ms){
  }
  frame=requestAnimationFrame(render);
 }
-function finish(){if(!active)return;active=false;clearTimeout(timer);cancelAnimationFrame(frame);frame=0;timer=0;
- portal.classList.remove('is-active');portal.setAttribute('aria-hidden','true');document.body.style.overflow=oldOverflow;
- document.getElementById('spheres')?.scrollIntoView({behavior:'instant',block:'start'});
- history.replaceState(null,'','#spheres');
+function finish(){
+ if(!active||transitioning)return;
+ transitioning=true;clearTimeout(timer);cancelAnimationFrame(frame);frame=0;timer=0;
+ // Le portail reste visible pendant que la lumière monte : aucune apparition brutale de la page.
+ crossfade.classList.remove('is-revealing');crossfade.classList.add('is-visible');
+ fadeTimer=setTimeout(()=>{
+  document.getElementById('spheres')?.scrollIntoView({behavior:'instant',block:'start'});
+  history.replaceState(null,'','#spheres');
+  portal.classList.remove('is-active');portal.setAttribute('aria-hidden','true');
+  document.body.style.overflow=oldOverflow;
+  active=false;
+  // Deux images d'affichage pour que la destination soit peinte derrière le fondu.
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+   crossfade.classList.remove('is-visible');crossfade.classList.add('is-revealing');
+   revealTimer=setTimeout(()=>{clearFade()},1100);
+  }));
+ },reduced?120:650);
 }
-function play(e){if(e)e.preventDefault();if(active)return;
- if(reduced){document.getElementById('spheres')?.scrollIntoView({behavior:'instant'});history.replaceState(null,'','#spheres');return}
+function play(e){if(e)e.preventDefault();if(active||transitioning)return;
+ if(reduced){oldOverflow=document.body.style.overflow;active=true;finish();return}
  oldOverflow=document.body.style.overflow;document.body.style.overflow='hidden';resize();
  // Remove and re-add class, forcing a new animation timeline on every visit.
  portal.classList.remove('is-active');void portal.offsetWidth;
