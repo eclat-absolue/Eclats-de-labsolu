@@ -274,7 +274,66 @@ filter:drop-shadow(0 4px 5px #01060999)}
 @media(max-width:700px){.portal-v3 .portal-v3-astrolabe{width:min(78vw,65vh)}.portal-v3 .v3-ring{box-shadow:inset 0 0 0 1px #342312,0 0 0 1px #5b4126}.portal-v3 .v3-ring::after{display:none}.portal-v3 .portal-v3-title{font-size:18px}}
 .portal-v3:not(.is-active) .v3-ring,.portal-v3:not(.is-active) .v3-core{animation-play-state:paused!important}
 @media(prefers-reduced-motion:reduce){.portal-v3 *{animation:none!important}}
-</style></head><body>
+</style>
+<style id="eclats-elegance-2026">
+/* Les menus restent sur la fresque, sans changement de leur position. */
+.home-sphere-menu .sphere-link{
+ position:relative;isolation:isolate;transition:background-color .26s ease,color .26s ease,transform .3s ease,box-shadow .3s ease;
+}
+.home-sphere-menu .sphere-link::after{
+ content:"✧";position:absolute;right:3%;top:50%;transform:translateY(-50%) scale(.5);
+ opacity:0;color:#f8d895;text-shadow:0 0 8px #ffdb7d;transition:opacity .25s ease,transform .25s ease;
+ pointer-events:none;
+}
+.home-sphere-menu .sphere-link:hover,.home-sphere-menu .sphere-link:focus-visible{
+ transform:translateX(-2%);box-shadow:inset 0 0 10px #ffe2a53d,0 0 10px #efce7666;
+}
+.home-sphere-menu .sphere-link:hover::after,.home-sphere-menu .sphere-link:focus-visible::after{
+ opacity:1;transform:translateY(-50%) scale(1);
+}
+.home-sphere-menu .sphere-dot{transition:transform .35s ease,box-shadow .35s ease,filter .35s ease}
+.home-sphere-menu .sphere-link:hover .sphere-dot,.home-sphere-menu .sphere-link:focus-visible .sphere-dot{
+ transform:scale(1.16);box-shadow:0 0 0 1px #ffebc4,0 0 12px #f2ce81;filter:brightness(1.2)
+}
+@media(hover:none){
+ .home-sphere-menu .sphere-link:active{background:#193b4a;color:#fff1c9}
+ .home-sphere-menu .sphere-link:active .sphere-dot{filter:brightness(1.25)}
+}
+/* Les éléments sont visibles par défaut, même si JavaScript est désactivé. */
+@media(prefers-reduced-motion:no-preference){
+ .reveal-ready .section .sectionhead,
+ .reveal-ready .section .shell > .split,
+ .reveal-ready .section .tile,
+ .reveal-ready .section .gallery-card,
+ .reveal-ready .section .reading,
+ .reveal-ready .section .experience,
+ .reveal-ready .section .medallion,
+ .reveal-ready .section .comparison,
+ .reveal-ready .section .comparebox{
+  opacity:0;transform:translateY(18px);
+  transition:opacity .72s ease,transform .72s cubic-bezier(.22,1,.36,1);
+ }
+ .reveal-ready .section .is-revealed{opacity:1!important;transform:none!important}
+ .reveal-ready .section .tile:nth-child(2){transition-delay:65ms}
+ .reveal-ready .section .tile:nth-child(3){transition-delay:130ms}
+ .reveal-ready .section .tile:nth-child(4){transition-delay:195ms}
+ .reveal-ready .section .tile:nth-child(5){transition-delay:260ms}
+ .reveal-ready .section .tile:nth-child(6){transition-delay:325ms}
+}
+/* Un voile bref entre les rubriques : opacité seulement = animation peu coûteuse. */
+#eclats-section-veil{
+ position:fixed;inset:0;z-index:99990;pointer-events:none;opacity:0;
+ background:radial-gradient(ellipse at 50% 48%,#eed5a0 0%,#bb9158 27%,#183747 66%,#06131d 100%);
+ transition:opacity .32s ease;will-change:opacity;
+}
+#eclats-section-veil.veil-on{opacity:.94;pointer-events:auto}
+#eclats-section-veil.veil-out{opacity:0;transition-duration:.58s}
+@media(prefers-reduced-motion:reduce){
+ #eclats-section-veil{display:none!important}
+ .home-sphere-menu .sphere-link,.home-sphere-menu .sphere-dot{transition:none!important}
+}
+</style>
+</head><body>
 <section id="accueil" class="image-home" aria-label="Accueil Éclats de l'Absolu">
  <div class="art-board">
   <img src="./accueil-eclats.png" alt="Éclats de l'Absolu : fresque cosmique sur parchemin, avec nature, galaxies, œil, aigle et menu illustré" fetchpriority="high">
@@ -502,6 +561,60 @@ portal.querySelector('.portal-skip').addEventListener('click',finish);
 document.addEventListener('keydown',e=>{if(e.key==='Escape')finish()});
 window.addEventListener('resize',()=>{if(active)resize()},{passive:true});
 document.addEventListener('visibilitychange',()=>{if(document.hidden&&active)finish()});
+})();
+</script>
+
+<script id="eclats-elegance-js">
+(()=>{
+ const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+ const sections=[...document.querySelectorAll('main .section')];
+ if(!reduced&&'IntersectionObserver' in window){
+  const targets=sections.flatMap(section=>[...section.querySelectorAll('.sectionhead,.split,.tile,.gallery-card,.reading,.experience,.medallion,.comparison,.comparebox')]);
+  // No content is hidden until observer is ready.
+  const observer=new IntersectionObserver(entries=>{
+   for(const entry of entries)if(entry.isIntersecting){entry.target.classList.add('is-revealed');observer.unobserve(entry.target)}
+  },{rootMargin:'0px 0px 40px 0px',threshold:.06});
+  targets.forEach(el=>observer.observe(el));
+  document.documentElement.classList.add('reveal-ready');
+  // Prevent any initial viewport flicker.
+  targets.filter(el=>{const r=el.getBoundingClientRect();return r.top<innerHeight&&r.bottom>0}).forEach(el=>el.classList.add('is-revealed'));
+  // Dynamically inserted Supabase cards should animate too.
+  const gallery=document.getElementById('gallery');
+  if(gallery)new MutationObserver(records=>{
+   records.forEach(record=>record.addedNodes.forEach(node=>{
+    if(node.nodeType!==1)return;
+    if(node.matches?.('.gallery-card'))observer.observe(node);
+    node.querySelectorAll?.('.gallery-card').forEach(card=>observer.observe(card));
+   }));
+  }).observe(gallery,{childList:true});
+ }
+ if(reduced)return;
+ const veil=document.createElement('div');veil.id='eclats-section-veil';veil.setAttribute('aria-hidden','true');
+ document.body.append(veil);
+ let pending=false;
+ document.addEventListener('click',event=>{
+  const anchor=event.target.closest?.('a[href^="#"]');
+  if(!anchor||event.defaultPrevented||event.button!==0||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey)return;
+  if(anchor.classList.contains('home-real-enter'))return; // portail 3D et fondu inchangés
+  const id=decodeURIComponent(anchor.getAttribute('href').slice(1));
+  const target=id&&document.getElementById(id);
+  if(!target||pending)return;
+  // Accueil and small within-section controls remain immediate.
+  if(id==='accueil')return;
+  event.preventDefault();pending=true;
+  veil.classList.remove('veil-out');void veil.offsetWidth;veil.classList.add('veil-on');
+  setTimeout(()=>{
+   target.scrollIntoView({behavior:'instant',block:'start'});
+   history.pushState(null,'','#'+encodeURIComponent(id));
+   // Ensure destination's reveal elements become visible behind the veil.
+   target.querySelectorAll('.sectionhead,.split,.tile,.gallery-card,.reading,.experience,.medallion,.comparison,.comparebox')
+     .forEach(el=>el.classList.add('is-revealed'));
+   requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    veil.classList.remove('veil-on');veil.classList.add('veil-out');
+    setTimeout(()=>{veil.classList.remove('veil-out');pending=false},620);
+   }));
+  },330);
+ },true);
 })();
 </script>
 </body></html>
