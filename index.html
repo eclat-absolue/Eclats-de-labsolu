@@ -191,7 +191,7 @@ main>.section{scroll-margin-top:80px}
 .home-sphere-menu .sphere-link{display:grid;grid-template-columns:12% 32% 1fr;gap:2%;align-items:center;
  flex:1;min-height:0;padding:0 1%;color:#382313;text-decoration:none;text-align:left;
  font-size:clamp(5px,.88vw,13px);white-space:nowrap;transition:background .25s,color .25s,filter .25s;border-radius:5px}
-.home-sphere-menu .sphere-link:hover,.home-sphere-menu .sphere-link:focus-visible{
+.home-sphere-menu .sphere-link:hover,.home-sphere-menu .sphere-link:focus-visible,.home-sphere-menu .sphere-link:active{
  color:#ffecbf;background:#12354c;filter:drop-shadow(0 0 4px #f0c678);outline:1px solid #eac17b}
 .home-sphere-menu .sphere-dot{width:90%;aspect-ratio:1;border-radius:50%;border:1px solid #e6c98e;
  box-shadow:inset -2px -2px 3px #15293b99,0 0 4px #a16b2d}
@@ -285,10 +285,10 @@ filter:drop-shadow(0 4px 5px #01060999)}
  opacity:0;color:#f8d895;text-shadow:0 0 8px #ffdb7d;transition:opacity .25s ease,transform .25s ease;
  pointer-events:none;
 }
-.home-sphere-menu .sphere-link:hover,.home-sphere-menu .sphere-link:focus-visible{
- transform:translateX(-2%);box-shadow:inset 0 0 10px #ffe2a53d,0 0 10px #efce7666;
+.home-sphere-menu .sphere-link:hover,.home-sphere-menu .sphere-link:focus-visible,.home-sphere-menu .sphere-link:active{
+ transform:translateX(-4%) scale(1.035);background:linear-gradient(90deg,#f4d79c,#e9b960)!important;color:#172c36!important;box-shadow:0 0 20px #f8d386bb,inset 0 0 10px #fff5d6;
 }
-.home-sphere-menu .sphere-link:hover::after,.home-sphere-menu .sphere-link:focus-visible::after{
+.home-sphere-menu .sphere-link:hover::after,.home-sphere-menu .sphere-link:focus-visible::after,.home-sphere-menu .sphere-link:active::after{
  opacity:1;transform:translateY(-50%) scale(1);
 }
 .home-sphere-menu .sphere-dot{transition:transform .35s ease,box-shadow .35s ease,filter .35s ease}
@@ -302,7 +302,7 @@ filter:drop-shadow(0 4px 5px #01060999)}
 /* Les éléments sont visibles par défaut, même si JavaScript est désactivé. */
 @media(prefers-reduced-motion:no-preference){
  .reveal-ready .section .sectionhead,
- .reveal-ready .section .shell > .split,
+ .reveal-ready .section .split,
  .reveal-ready .section .tile,
  .reveal-ready .section .gallery-card,
  .reveal-ready .section .reading,
@@ -310,8 +310,8 @@ filter:drop-shadow(0 4px 5px #01060999)}
  .reveal-ready .section .medallion,
  .reveal-ready .section .comparison,
  .reveal-ready .section .comparebox{
-  opacity:0;transform:translateY(18px);
-  transition:opacity .72s ease,transform .72s cubic-bezier(.22,1,.36,1);
+  opacity:0;transform:translateY(35px) scale(.965);
+  transition:opacity .95s ease,transform .95s cubic-bezier(.22,1,.36,1);
  }
  .reveal-ready .section .is-revealed{opacity:1!important;transform:none!important}
  .reveal-ready .section .tile:nth-child(2){transition-delay:65ms}
@@ -322,7 +322,7 @@ filter:drop-shadow(0 4px 5px #01060999)}
 }
 /* Un voile bref entre les rubriques : opacité seulement = animation peu coûteuse. */
 #eclats-section-veil{
- position:fixed;inset:0;z-index:99990;pointer-events:none;opacity:0;
+ position:fixed;inset:0;z-index:9990;pointer-events:none;opacity:0;
  background:radial-gradient(ellipse at 50% 48%,#eed5a0 0%,#bb9158 27%,#183747 66%,#06131d 100%);
  transition:opacity .32s ease;will-change:opacity;
 }
@@ -332,6 +332,7 @@ filter:drop-shadow(0 4px 5px #01060999)}
  #eclats-section-veil{display:none!important}
  .home-sphere-menu .sphere-link,.home-sphere-menu .sphere-dot{transition:none!important}
 }
+.home-sphere-menu .sphere-link.sphere-tapped{background:#f5d48f!important;color:#162d38!important;box-shadow:0 0 24px #f8d386}
 </style>
 </head><body>
 <section id="accueil" class="image-home" aria-label="Accueil Éclats de l'Absolu">
@@ -566,6 +567,9 @@ document.addEventListener('visibilitychange',()=>{if(document.hidden&&active)fin
 
 <script id="eclats-elegance-js">
 (()=>{
+ document.querySelectorAll('.home-sphere-menu .sphere-link').forEach(a=>{
+  a.addEventListener('pointerdown',()=>{a.classList.add('sphere-tapped');setTimeout(()=>a.classList.remove('sphere-tapped'),850)},{passive:true});
+ });
  const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
  const sections=[...document.querySelectorAll('main .section')];
  if(!reduced&&'IntersectionObserver' in window){
@@ -600,7 +604,7 @@ document.addEventListener('visibilitychange',()=>{if(document.hidden&&active)fin
   const target=id&&document.getElementById(id);
   if(!target||pending)return;
   // Accueil and small within-section controls remain immediate.
-  if(id==='accueil')return;
+  // Retour accueil également accompagné d'un fondu.
   event.preventDefault();pending=true;
   veil.classList.remove('veil-out');void veil.offsetWidth;veil.classList.add('veil-on');
   setTimeout(()=>{
