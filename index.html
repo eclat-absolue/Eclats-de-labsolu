@@ -301,6 +301,13 @@ filter:drop-shadow(0 4px 5px #01060999)}
 }
 /* Les éléments sont visibles par défaut, même si JavaScript est désactivé. */
 @media(prefers-reduced-motion:no-preference){
+ .reveal-ready .section .shell > .eyebrow,
+ .reveal-ready .section .shell > h2,
+ .reveal-ready .section .shell > .intro,
+ .reveal-ready .section .split > div,
+ .reveal-ready .section .buttons,
+ .reveal-ready .section .museum-toolbar,
+ .reveal-ready .section .museum-caption,
  .reveal-ready .section .sectionhead,
  .reveal-ready .section .split,
  .reveal-ready .section .tile,
@@ -310,15 +317,15 @@ filter:drop-shadow(0 4px 5px #01060999)}
  .reveal-ready .section .medallion,
  .reveal-ready .section .comparison,
  .reveal-ready .section .comparebox{
-  opacity:0;transform:translateY(35px) scale(.965);
-  transition:opacity .95s ease,transform .95s cubic-bezier(.22,1,.36,1);
+  opacity:0;transform:translate3d(0,100px,0) scale(.93);
+  transition:opacity 1.25s ease,transform 1.25s cubic-bezier(.16,1,.3,1);
  }
  .reveal-ready .section .is-revealed{opacity:1!important;transform:none!important}
- .reveal-ready .section .tile:nth-child(2){transition-delay:65ms}
- .reveal-ready .section .tile:nth-child(3){transition-delay:130ms}
- .reveal-ready .section .tile:nth-child(4){transition-delay:195ms}
- .reveal-ready .section .tile:nth-child(5){transition-delay:260ms}
- .reveal-ready .section .tile:nth-child(6){transition-delay:325ms}
+ .reveal-ready .section .tile:nth-child(2){transition-delay:140ms}
+ .reveal-ready .section .tile:nth-child(3){transition-delay:280ms}
+ .reveal-ready .section .tile:nth-child(4){transition-delay:420ms}
+ .reveal-ready .section .tile:nth-child(5){transition-delay:560ms}
+ .reveal-ready .section .tile:nth-child(6){transition-delay:700ms}
 }
 /* Un voile bref entre les rubriques : opacité seulement = animation peu coûteuse. */
 #eclats-section-veil{
@@ -573,7 +580,7 @@ document.addEventListener('visibilitychange',()=>{if(document.hidden&&active)fin
  const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
  const sections=[...document.querySelectorAll('main .section')];
  if(!reduced&&'IntersectionObserver' in window){
-  const targets=sections.flatMap(section=>[...section.querySelectorAll('.sectionhead,.split,.tile,.gallery-card,.reading,.experience,.medallion,.comparison,.comparebox')]);
+  const targets=sections.flatMap(section=>[...section.querySelectorAll('.sectionhead,.tile,.gallery-card,.reading,.experience,.medallion,.comparison,.comparebox,.shell > .eyebrow,.shell > h2,.shell > .intro,.split > div,.buttons,.museum-toolbar,.museum-caption')]);
   // No content is hidden until observer is ready.
   const observer=new IntersectionObserver(entries=>{
    for(const entry of entries)if(entry.isIntersecting){entry.target.classList.add('is-revealed');observer.unobserve(entry.target)}
@@ -611,8 +618,7 @@ document.addEventListener('visibilitychange',()=>{if(document.hidden&&active)fin
    target.scrollIntoView({behavior:'instant',block:'start'});
    history.pushState(null,'','#'+encodeURIComponent(id));
    // Ensure destination's reveal elements become visible behind the veil.
-   target.querySelectorAll('.sectionhead,.split,.tile,.gallery-card,.reading,.experience,.medallion,.comparison,.comparebox')
-     .forEach(el=>el.classList.add('is-revealed'));
+   // L'observateur déclenche la remontée à l'arrivée dans la rubrique.
    requestAnimationFrame(()=>requestAnimationFrame(()=>{
     veil.classList.remove('veil-on');veil.classList.add('veil-out');
     setTimeout(()=>{veil.classList.remove('veil-out');pending=false},620);
