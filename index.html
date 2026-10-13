@@ -348,7 +348,22 @@ filter:drop-shadow(0 4px 5px #01060999)}
 .museum-dialog .museum-oeuvre-text:empty{display:none}
 .museum-dialog img{max-height:58dvh}
 @media(max-width:600px){.museum-dialog{padding:12px}.museum-dialog img{max-height:49dvh}.museum-dialog .museum-oeuvre-text{font-size:18px;line-height:1.5}}
-</style><style id="eclats-description-popup-only">#gallery .gallery-card .inner p,#gallery .gallery-card .description,#gallery .gallery-card [data-description]{display:none!important}#museum-dialog #museum-desc{display:block!important;white-space:pre-wrap}#museum-dialog #museum-desc:empty{display:none!important}</style></head><body>
+</style><style id="eclats-description-popup-only">#gallery .gallery-card .inner p,#gallery .gallery-card .description,#gallery .gallery-card [data-description]{display:none!important}#museum-dialog #museum-desc{display:block!important;white-space:pre-wrap}#museum-dialog #museum-desc:empty{display:none!important}</style><style id="eclats-manifeste-css">
+.manifeste-section{position:relative;min-height:100svh!important;align-items:flex-start!important;padding:clamp(65px,9vw,120px) 0!important;background:radial-gradient(ellipse at 50% 5%,#315061 0%,#152c39 45%,#081822 100%)!important;color:#f3e4c7;text-align:center;overflow:hidden}
+.manifeste-section:before{content:'✧';position:absolute;top:35px;left:50%;transform:translateX(-50%);font-size:38px;color:#c6a56d;opacity:.75}
+.manifeste-shell{max-width:860px!important}
+.manifeste-section h2{font:600 clamp(29px,5vw,55px)/1.35 Cinzel,Georgia,serif;letter-spacing:.045em;color:#f5dba4;margin:20px auto 38px;text-shadow:0 3px 20px #0008}
+.manifeste-section h2 span{display:block;font-size:.77em;margin-top:8px}
+.manifeste-corps{max-width:760px;margin:auto;font-size:clamp(19px,2.2vw,25px);line-height:1.8}
+.manifeste-corps>p{margin:0 auto 28px}
+.manifeste-dualite{margin:38px auto 43px;padding:24px 10px;border-top:1px solid #bfa06a77;border-bottom:1px solid #bfa06a77;color:#f5dba4;font-family:Cinzel,Georgia,serif;font-size:clamp(15px,2.3vw,24px);line-height:1.6;letter-spacing:.03em}
+.manifeste-dualite p{margin:9px 0}.manifeste-dualite span{color:#cdbb9a}.manifeste-symbole{font-size:30px;color:#cba46b}
+.manifeste-conclusion{margin:45px auto 22px;padding-top:35px;border-top:1px solid #bfa06a77;color:#f4d69d}
+.manifeste-conclusion strong{font:600 clamp(16px,2.4vw,23px)/1.5 Cinzel,Georgia,serif}
+.manifeste-conclusion p{margin:15px 0}.manifeste-signature{font-style:italic;color:#d9bf91}
+.manifeste-suite{margin-top:30px}
+@media(max-width:600px){.manifeste-section{padding:65px 0!important}.manifeste-corps{line-height:1.65}.manifeste-corps>p{margin-bottom:24px}.manifeste-section h2{margin-bottom:26px}}
+</style></head><body>
 <section id="accueil" class="image-home" aria-label="Accueil Éclats de l'Absolu">
  <div class="art-board">
   <img src="./accueil-eclats.png" alt="Éclats de l'Absolu : fresque cosmique sur parchemin, avec nature, galaxies, œil, aigle et menu illustré" fetchpriority="high">
@@ -383,10 +398,27 @@ filter:drop-shadow(0 4px 5px #01060999)}
  <nav class="inner-links" aria-label="Menu flottant permanent">
  <a href="#accueil">⌂ Accueil</a>
  <details id="spheres-dropdown"><summary>Les Sphères ▾</summary><div class="drop"><a href="#spheres">Les six sphères</a><a href="#spheres">Origines</a><a href="#spheres">Formes</a><a href="#spheres">Transformations</a><a href="#correspondances">Correspondances</a><a href="#passage">Le Passage</a><a href="#organik">Les Deux Miroirs</a></div></details>
- <a href="#correspondances">Correspondances</a><a href="#organik">Organik / Mékanik</a><a href="#passage">Le Passage</a><a href="#explorateur">Explorateur</a><a href="#images">Images</a><a href="#textes">Textes</a><a href="#experiences">Expériences</a><a href="#communaute">Communauté</a><a href="#apropos">À propos</a>
+ <a href="#manifeste">Notre manifeste</a><a href="#correspondances">Correspondances</a><a href="#organik">Organik / Mékanik</a><a href="#passage">Le Passage</a><a href="#explorateur">Explorateur</a><a href="#images">Images</a><a href="#textes">Textes</a><a href="#experiences">Expériences</a><a href="#communaute">Communauté</a><a href="#apropos">À propos</a>
  </nav></div></header>
 <script>const innerNav=document.getElementById('inner-navigation');const dd=document.getElementById('spheres-dropdown');function positionDropdown(){innerNav.style.setProperty('--menu-bottom',innerNav.getBoundingClientRect().bottom+'px')}window.addEventListener('resize',positionDropdown);window.addEventListener('scroll',positionDropdown,{passive:true});dd.addEventListener('toggle',positionDropdown);document.querySelectorAll('.inner-links a').forEach(a=>a.addEventListener('click',()=>{dd.open=false}));document.addEventListener('click',e=>{if(!dd.contains(e.target))dd.open=false});positionDropdown();</script>
-<main><section id="spheres" class="section light"><div class="shell"><div class="sectionhead"><div class="eyebrow">Les mondes de l'œuvre</div><h2>Explorer les six sphères</h2><p class="intro">Six portes d'entrée pour parcourir les formes, les métamorphoses et les correspondances de la Mythologie Cosmik.</p></div><div class="tilegrid"><article class="tile"><span class="num">SPHÈRE I</span><h3>Origines</h3><p>Les premières formes, les commencements et la question de l'unité.</p><a href="#textes">Lire →</a></article><article class="tile"><span class="num">SPHÈRE II</span><h3>Formes</h3><p>Les motifs qui traversent les règnes et les échelles du vivant.</p><a href="#correspondances">Comparer →</a></article><article class="tile"><span class="num">SPHÈRE III</span><h3>Transformations</h3><p>Du végétal à la machine, des cycles aux métamorphoses.</p><a href="#organik">Explorer →</a></article><article class="tile"><span class="num">SPHÈRE IV</span><h3>Correspondances</h3><p>Des rapprochements sensibles entre le micro et le méga.</p><a href="#correspondances">Observer →</a></article><article class="tile"><span class="num">SPHÈRE V</span><h3>Le Passage</h3><p>Les seuils, les frontières et les changements de perspective.</p><a href="#experiences">Traverser →</a></article><article class="tile"><span class="num">SPHÈRE VI</span><h3>Les Deux Miroirs</h3><p>Deux regards sur une même architecture imaginaire.</p><a href="#organik">Découvrir →</a></article></div></div></section>
+<main><section id="manifeste" class="section dark manifeste-section" aria-labelledby="manifeste-titre">
+<div class="shell manifeste-shell">
+<div class="eyebrow">✧ Manifeste de la Mythologie Cosmik ✧</div>
+<h2 id="manifeste-titre">L’ÂME DE L’ATOME <span>— L’ATOME DE L’ÂME</span></h2>
+<div class="manifeste-corps">
+<p>Depuis des siècles, les religions interrogent l'existence à travers l'âme, tandis que les sciences explorent la matière à travers l'atome.</p>
+<p>Deux langages, deux approches, deux manières de comprendre les existences.</p>
+<p>Dans notre Mythologie Cosmik, nous établissons une correspondance symbolique :</p>
+<div class="manifeste-dualite"><p>L’ÂME <span>— RELIGION —</span> ORGANIK</p><div class="manifeste-symbole">✧</div><p>L’ATOME <span>— SCIENCE —</span> MÉCANIK</p></div>
+<p>Mais pourquoi ces deux univers devraient-ils rester séparés ?</p>
+<p>Et si l'âme de l'atome et l'atome de l'âme représentaient deux directions d'une même recherche ?</p>
+<p>Du micro au méga, nous explorons les passages entre le naturel et l'artificiel, l'organik et le mécanik, les naissances et les transformations.</p>
+<p>Notre œuvre propose de regarder la religion et la science non comme deux ennemies, ni comme deux vérités nécessairement identiques, mais comme deux langages que nous faisons dialoguer pour interroger toutes les existences.</p>
+<div class="manifeste-conclusion"><strong>L’ÂME DE L’ATOME — L’ATOME DE L’ÂME</strong><p>Deux langages. Deux regards. Une correspondance réciproque.</p><p class="manifeste-signature">Yolcu — Vegan Stratégik</p></div>
+</div>
+<a class="btn manifeste-suite" href="#spheres">Découvrir les six Sphères <span aria-hidden="true">✧</span></a>
+</div></section>
+<section id="spheres" class="section light"><div class="shell"><div class="sectionhead"><div class="eyebrow">Les mondes de l'œuvre</div><h2>Explorer les six sphères</h2><p class="intro">Six portes d'entrée pour parcourir les formes, les métamorphoses et les correspondances de la Mythologie Cosmik.</p></div><div class="tilegrid"><article class="tile"><span class="num">SPHÈRE I</span><h3>Origines</h3><p>Les premières formes, les commencements et la question de l'unité.</p><a href="#textes">Lire →</a></article><article class="tile"><span class="num">SPHÈRE II</span><h3>Formes</h3><p>Les motifs qui traversent les règnes et les échelles du vivant.</p><a href="#correspondances">Comparer →</a></article><article class="tile"><span class="num">SPHÈRE III</span><h3>Transformations</h3><p>Du végétal à la machine, des cycles aux métamorphoses.</p><a href="#organik">Explorer →</a></article><article class="tile"><span class="num">SPHÈRE IV</span><h3>Correspondances</h3><p>Des rapprochements sensibles entre le micro et le méga.</p><a href="#correspondances">Observer →</a></article><article class="tile"><span class="num">SPHÈRE V</span><h3>Le Passage</h3><p>Les seuils, les frontières et les changements de perspective.</p><a href="#experiences">Traverser →</a></article><article class="tile"><span class="num">SPHÈRE VI</span><h3>Les Deux Miroirs</h3><p>Deux regards sur une même architecture imaginaire.</p><a href="#organik">Découvrir →</a></article></div></div></section>
 <section id="correspondances" class="section dark"><div class="shell split"><div><div class="eyebrow">Correspondances</div><h2>Du MICRO au MÉGA</h2><p class="intro">Une invitation à observer des ressemblances de forme sans confondre analogie artistique et explication scientifique.</p><div class="comparison" role="tablist" aria-label="Correspondances"><button class="tab" role="tab" aria-selected="true" data-topic="0">Ramifications</button><button class="tab" role="tab" aria-selected="false" data-topic="1">Spirales</button><button class="tab" role="tab" aria-selected="false" data-topic="2">Réseaux</button></div><div class="comparebox" id="comparebox" aria-live="polite"><strong>Ramifications</strong><p>Une branche, une veine, un fleuve : des formes qui invitent à changer d'échelle et de regard.</p></div></div><div class="medallion"><div><strong>MICRO<br>✦<br>MÉGA</strong><small>Observer • Comparer • Questionner</small></div></div></div></section>
 <section id="organik" class="section light"><div class="shell split"><div class="medallion" style="background:radial-gradient(circle,#e4d1a5,#698079 60%,#233b3f);border-color:#956a38"><div><strong style="color:#f9e6b8">ORGANIK<br>↔<br>MÉCANIK</strong><small>La forme en mouvement</small></div></div><div><div class="eyebrow">Métamorphoses</div><h2>ORGANIK ↔ MÉCANIK</h2><p class="intro">L'œuvre rapproche les textures du vivant et les architectures de la technique. Les ailes deviennent mécanismes, les nervures deviennent réseaux, et chaque forme suggère une nouvelle lecture.</p><a class="btn" href="#images">Voir les créations →</a></div></div></section>
 <section id="explorateur" class="section dark"><div class="shell"><div class="sectionhead"><div class="eyebrow">Laboratoire poétique</div><h2>Explorateur MICRO ↔ MÉGA</h2><p class="intro">Une même silhouette peut évoquer des réalités très différentes. Changez de motif pour comparer les échelles.</p></div>
@@ -551,8 +583,8 @@ function finish(){
  // Le portail reste visible pendant que la lumière monte : aucune apparition brutale de la page.
  crossfade.classList.remove('is-revealing');crossfade.classList.add('is-visible');
  fadeTimer=setTimeout(()=>{
-  document.getElementById('spheres')?.scrollIntoView({behavior:'instant',block:'start'});
-  history.replaceState(null,'','#spheres');
+  document.getElementById('manifeste')?.scrollIntoView({behavior:'instant',block:'start'});
+  history.replaceState(null,'','#manifeste');
   portal.classList.remove('is-active');portal.setAttribute('aria-hidden','true');
   document.body.style.overflow=oldOverflow;
   active=false;
